@@ -12,7 +12,8 @@ class FriendshipsController < ApplicationController
     current_user.friends.delete(another_user)
     redirect_to users_path
   end
-
+  
+  private 
   def friendship_params
     params.require(:friendship).permit(:friend_id)
   end

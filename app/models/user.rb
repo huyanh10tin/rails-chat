@@ -1,13 +1,21 @@
 class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
+  has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
+  has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
 
   # me ==> friendships
   # friendship ==> friend
   # friendships ==> friends
 
-  validates :name, :email, presence: true
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: {case_sensitive: false}
+
   has_secure_password
+
+  def titleize_name
+    name.titleize if name
+  end
 
   def self.from_omniauth(auth)
     # Check out the Auth Hash function at https://github.com/mkdynamic/omniauth-facebook#auth-hash
@@ -54,18 +62,19 @@ class User < ApplicationRecord
     end
   end
 
-  # EXPLANATION[]
-  # def friends
-  #   # go look at each of my friendship and get friend_id
-  #   # then look up in User for the one with the id == friend_id
-  #   results = []
-  #   friendships.each do |fs|
-  #     results << User.find(fs.friend_id)
-  #   end
-  #   results
-  # end
+  def friends
+    friendships.map {|fs| User.find(fs.friend_id) }
+  end
 
   def friend_names
     friends.map{|e| e.name}
+  end
+
+  def self.except(user)
+    where.not(id: user.id)
+  end
+
+  def self.recipient_options(user)
+    except(user).map{|e| [e.titleize_name, e.id]}
   end
 end
