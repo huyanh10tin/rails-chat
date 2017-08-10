@@ -21,12 +21,14 @@
     <tr>
       <th>
         <figure class="image is-128x128">
-          <%= image_tag(f.image_url) %>
+          <%= image_tag(f.image_url_or_default) %>
         </figure>
       </th>
       <th><%= f.titleize_name %></th>
-      <th><%= f.email %></th>
-      <th></th>
+      <th><%= f.email %>  </th>
+      <th>
+      <%= button_to "Remove Friend", remove_friend_path(user_id: f), method: :delete, class: "button is-danger" %>
+      </th>
     </tr>
     <% end %>
   </tfoot>
