@@ -21,13 +21,28 @@
     <tr>
       <th>
         <figure class="image is-128x128">
-          <%= image_tag(f.image_url_or_default) %>
+          <%= image_tag(f.image_url_or_default, class: "hvr-grow") %>
         </figure>
       </th>
       <th><%= f.titleize_name %></th>
       <th><%= f.email %>  </th>
       <th>
-      <%= button_to "Remove Friend", remove_friend_path(user_id: f), method: :delete, class: "button is-danger" %>
+      <%= button_to "Remove Friend", remove_friend_path(user_id: f), method: :delete, class: "button is-danger hvr-shrink" %>
+      <div id="navMenuExample" class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item has-dropdown is-hoverable">
+              <%= medium_icon("cog options_#{f.id}", "")%>
+            <div class="navbar-dropdown ">
+              <a class="navbar-item " href="/documentation/overview/start/">
+                Overview
+              </a>
+              <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
+                Modifiers
+              </a>
+              </div>
+          </div>
+        </div>
+      </div>
       </th>
     </tr>
     <% end %>

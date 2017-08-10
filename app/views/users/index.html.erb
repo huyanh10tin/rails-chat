@@ -8,8 +8,9 @@
   </thead>
   <tbody>
     <% User.all.each do |another_user| %>
+    <% next if current_user.id == another_user.id %>
       <tr>
-        <td><%= image_tag another_user.image_url_or_default %></td>
+        <td><%= image_tag another_user.image_url_or_default, class: "hvr-grow" %></td>
         <td>
           <div><%= another_user.name %></div>
           <div><%= another_user.email %></div>

@@ -3,3 +3,9 @@
 @import "font-awesome";
 @import "home";
 @import "users";
+@import "friends";
+@import "hover";
+
+[class*="fa-options_"] {
+  color: red;
+}
