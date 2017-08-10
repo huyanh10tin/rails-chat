@@ -1,9 +1,32 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  get 'friendships/index'
 
-  get "login" => "sessions#new"
-  post "login" => "sessions#create"
-  get "logout" => "sessions#destroy"
+  get 'friendships/create'
+
+  get 'friendships/destroy'
+
+  get 'friendships/edit'
+
+  resources :messages do
+    collection do 
+      get :inbox
+      get :sent
+    end
+  end
+  
+  get "friends" => "friends#index"
+  get "profile" => "users#edit"
+  
+  # NOTE: /auth/facebook is supported by the omniauth-facebook gem
+
+  get 'auth/:provider/callback' => 'sessions#callback'
+
+  delete "remove_friend" => "friendships#destroy"
+  resources :friendships
+
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
   resources :users
 
   root 'home#index'

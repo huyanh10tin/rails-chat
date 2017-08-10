@@ -1,0 +1,33 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Friends</h1>
+    <h2 class="subtitle">
+      A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+    </h2>
+  </div>
+</section>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Avatar:</th>
+      <th>Name:</th>
+      <th>Email:</th>
+      <th>Action:</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <% @friends.each do |f| %>
+    <tr>
+      <th>
+        <figure class="image is-128x128">
+          <%= image_tag(f.image_url) %>
+        </figure>
+      </th>
+      <th><%= f.titleize_name %></th>
+      <th><%= f.email %></th>
+      <th></th>
+    </tr>
+    <% end %>
+  </tfoot>
+</table>

@@ -1,3 +1,30 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.navbar-burger {
+  &:hover {
+    background-color: darken($primaryColor, 10%);
+  }
+  > span {
+    background-color: white;
+  }
+}
+
+.navbar-brand .navbar-item {
+  padding: 0;
+  img {
+    max-height: 3rem;
+  }
+}
+
+span.icon {
+  margin-right: 5px;
+}
+
+.add-remove {
+  width: 160px;
+}
+
+.navbar-item .field {
+  .input,
+  .icon {
+    height: 1.8em;
+  }
+}

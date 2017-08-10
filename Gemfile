@@ -44,6 +44,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "http"
-gem "bulma-rails", "~> 0.4.3"
+gem "bulma-rails", github: "harley/bulma-rails"
 gem "rails-erd"
 gem 'turbolinks', '~> 5'
+gem "font-awesome-rails"
+gem "jquery-rails"
+gem 'omniauth'
+gem 'omniauth-facebook', '~> 4.0.0'

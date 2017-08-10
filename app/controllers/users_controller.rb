@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:index]
+  
   def new
     @user = User.new
   end
@@ -11,6 +13,15 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    current_user.update(user_params)
+    redirect_to root_path
   end
 
   def index

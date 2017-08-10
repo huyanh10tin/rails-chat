@@ -1,0 +1,26 @@
+<h1 class="title">New Message</h1>
+<%= form_for @message do |f| %>
+  <div class="field">
+    <div class="control">
+      <%= f.label :recipient_id, class: "label" %>
+        <div class="select">
+          <%= f.select :recipient_id, User.recipient_options(current_user) %>      
+        </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.label :body, class: "label" %>
+      <%= f.text_area :body, class: "textarea" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <button class="button is-primary">
+        <%= icon("send", "Send") %>
+      </button>
+    </div>
+  </div>
+<% end %>
