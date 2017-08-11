@@ -5,17 +5,20 @@ Rails.application.routes.draw do
   get 'friendships/edit'
 
   resources :friendships
+  post 'confirm' => "friendships#confirm"
+  get 'received_requests' => "friendships#received_requests"
+  get 'sent_requests' => "friendships#sent_requests"
   get "friends" => "friends#index"
   delete "remove_friend" => "friendships#destroy"
 
   resources :users
   resources :messages do
-    collection do 
+    collection do
       get :inbox
       get :sent
     end
   end
-  
+
   get "profile" => "users#edit"
 
   get 'auth/:provider/callback' => 'sessions#callback'

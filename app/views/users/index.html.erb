@@ -1,32 +1,39 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th></th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% User.all.each do |another_user| %>
-    <% next if current_user.id == another_user.id %>
-      <tr>
-        <td><%= image_tag another_user.image_url_or_default, class: "hvr-grow" %></td>
-        <td>
-          <div><%= another_user.name %></div>
-          <div><%= another_user.email %></div>
-        </td>
-        <td>
-          <% if current_user.is_friend?(another_user) %>
-            <%= link_to icon("user-times", "Remove friend"), remove_friend_path(user_id: another_user.id), class: "button is-danger add-remove", method: :delete %>
-          <% else %>
-          <%= another_user.id %>
-            <%= form_for current_user.friendships.build(friend: another_user) do |f| %>
-              <%= f.hidden_field :friend_id %>
-              <button class="button is-primary add-remove"><%= icon("user-plus", "Add Friend") %></button>
+<div class="columns is-multiline">
+  <% User.all.each do |another_user| %>
+  <% next if current_user.id == another_user.id %>
+    <!-- column -->
+    <div class="column is-6">
+      <!-- card -->
+      <div class="card">
+
+        <!-- card-header -->
+        <header class="card-header">
+          <%= another_user.email %>
+          <%= image_tag another_user.image_url_or_default, class: "hvr-grow" %>
+          <p class="card-header-title"><%= another_user.titleize_name %></p>
+        </header>
+        <!-- close header -->
+
+        <!-- card-content -->
+        <div class="card-content">
+          <div class="content">
+            <% if current_user.is_friend?(another_user) %>
+              <%= link_to icon("user-times", "Unfriend"), remove_friend_path(user_id: another_user.id), class: "button is-danger add-remove", method: :delete %>
+            <% else %>
+              <%= form_for current_user.friendships.build(friend: another_user, status: "pending", user_id: another_user.id) do |f| %>
+                <%= f.hidden_field :user_id %>
+                <%= f.hidden_field :friend_id %>
+
+                <%= f.hidden_field :status %>
+                <button class="button is-primary add-remove"><%= icon("user-plus", "Add Friend") %></button>
+              <% end %>
             <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </div>
+        </div>
+        <!-- close content -->
+      </div>
+      <!-- close card -->
+    </div>
+    <!-- close column -->
+  <% end %>
+</div>
