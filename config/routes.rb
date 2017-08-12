@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
-  get 'friendships/index'
-  get 'friendships/create'
-  get 'friendships/destroy'
-  get 'friendships/edit'
 
-  resources :friendships
+  post 'search' => "home#index"
   post 'confirm' => "friendships#confirm"
   get 'received_requests' => "friendships#received_requests"
   get 'sent_requests' => "friendships#sent_requests"
   get "friends" => "friends#index"
   delete "remove_friend" => "friendships#destroy"
 
+  resources :friendships
   resources :users do
     member do
       get 'profile'

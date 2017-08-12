@@ -1,10 +1,10 @@
 <div class="content">
-  <h2>Welcome</h2>
-
-  <% if current_user %>
-    <p>More features are coming. Stay tuned!</p>
-  <% else %>
+  <% unless current_user %>
+    <h2>Please Sign In</h2>
     <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
     <%= link_to icon("facebook", "Log in with Facebook"), "/auth/facebook", class: "button is-info" %>
   <% end %>
 </div>
+  <div class="column is-8 is-offset-2">
+    <%= render @posts %>
+  </div>

@@ -17,12 +17,16 @@
           </a>
           <div class="navbar-item">
             <div class="field">
-              <div class="control has-icons-right">
+              <%= form_tag(search_path, id: "search-form") do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+              <% end %>
+
+              <!-- <div class="control has-icons-right">
                 <input class="input" type="text" placeholder="Search users">
                 <span class="icon is-right is-small">
                   <%= fa_icon("search") %>
                 </span>
-              </div>
+              </div> -->
             </div>
           </div>
 

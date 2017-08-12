@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   private
-
   def require_login
     unless current_user
       redirect_to root_path, flash: {error: "Access denied."}

@@ -1,18 +1,18 @@
-  <div class="columns">
-    <div class="column is-3">
-      <aside class="menu">
-        <p class="menu-label">Profile</p>
-        <div class="field">
-          <div class="control">
-            <%= image_tag current_user.image_url_or_default %>
-          </div>
-        </div>        
-        <ul class="menu-list">
-          <li><%= link_to "Friends (#{current_user.friends.count})", friends_path, class: "navbar-item #{'is-active' if current_page? profile_path }" %></li>
-          <li><%= link_to "Friend Requests", new_message_path, class: "navbar-item #{'is-active' if current_page? profile_path }"  %></li>
-        </ul>
-      </aside>
-    </div>
+<div class="columns">
+  <div class="column is-3">
+    <aside class="menu">
+      <p class="menu-label">Profile</p>
+      <div class="field">
+        <div class="control">
+          <%= image_tag current_user.image_url_or_default %>
+        </div>
+      </div>
+      <ul class="menu-list">
+        <li><%= link_to "Friends (#{current_user.friends.count})", friends_path, class: "navbar-item #{'is-active' if current_page? profile_path }" %></li>
+        <li><%= link_to "Friend Requests(#{current_user.received_requests.count})", received_requests_path, class: "navbar-item #{'is-active' if current_page? profile_path }"  %></li>
+      </ul>
+    </aside>
+  </div>
   <div class="column">
     <div class="card user-card">
       <div class="card-content">
