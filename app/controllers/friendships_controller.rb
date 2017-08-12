@@ -17,7 +17,7 @@ class FriendshipsController < ApplicationController
     friendship = current_user.friendships.where(friend: params[:friend])[0]
     friendship.confirm
     friendship.save!
-    friendship = Friendship.where(user: params[:friend])[0]
+    friendship = Friendship.where("user_id = ? AND friend_id = ?", params[:friend], current_user.id)[0]
     friendship.confirm
     friendship.save!
     redirect_to received_requests_path

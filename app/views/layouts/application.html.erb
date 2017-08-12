@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Humanbook</title>
+    <title>RailsBook</title>
+    <link rel="icon" href="http://coolspotters.com/files/photos/26546/ruby-on-rails-profile.png">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -50,11 +51,10 @@
                   <%= icon("users", "Friends") %>
                 </a>
 
-
                 <div class="navbar-dropdown">
                   <%= link_to "Friends (#{current_user.friends.count})", friends_path, class: "navbar-item" %>
-                  <%= link_to "Friend Requests", received_requests_path, class: "navbar-item" %>
-                  <%= link_to "Sent Requests", sent_requests_path, class: "navbar-item" %>
+                  <%= link_to "Friend Requests(#{current_user.received_requests.count})", received_requests_path, class: "navbar-item" %>
+                  <%= link_to "Sent Requests(#{current_user.sent_requests.count})", sent_requests_path, class: "navbar-item" %>
                   <%= link_to "Users", users_path, class: "navbar-item" %>
                 </div>
               </div>
@@ -74,3 +74,9 @@
     </div>
   </body>
 </html>
+<div>
+
+
+
+
+</div>

@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   get "friends" => "friends#index"
   delete "remove_friend" => "friendships#destroy"
 
-  resources :users
+  resources :users do
+    member do
+      get 'profile'
+    end
+  end
   resources :messages do
     collection do
       get :inbox

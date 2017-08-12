@@ -57,7 +57,6 @@ class User < ApplicationRecord
   end
 
   def received_requests
-    # friendships.map {|e| (e.friend_id == id && e.status == "pending") ? e : next}
     friendships.where(status: nil).map {|fs| User.find(fs.friend_id)}
   end
 
@@ -67,7 +66,7 @@ class User < ApplicationRecord
 
   def sent_requests
     friends = friendships.map {|e| (e.user_id == id && e.status == "pending") ? e : next}
-    return [] if friends == [nil]
+    friends.delete(nil)
     friends.map { |friend| User.find(friend[:friend_id]) }
   end
 
