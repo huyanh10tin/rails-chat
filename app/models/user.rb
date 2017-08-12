@@ -72,11 +72,7 @@ class User < ApplicationRecord
     friends.map { |friend| User.find(friend[:friend_id]) }
   end
 
-  def self.except(user)
-    where.not(id: user.id)
-  end
-
   def self.recipient_options(user)
-    except(user).map{|e| [e.titleize_name, e.id]}
+    user.friends.map{|e| [e.titleize_name, e.id]}
   end
 end

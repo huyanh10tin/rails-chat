@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get 'profile'
     end
   end
+
   resources :messages do
     collection do
       get :inbox
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
   get "profile" => "users#edit"
 
   get 'auth/:provider/callback' => 'sessions#callback'
-
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
