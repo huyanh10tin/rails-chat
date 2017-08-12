@@ -28,3 +28,12 @@ span.icon {
     height: 1.8em;
   }
 }
+
+.menu-list a.is-active {
+  background-color: $primaryColor;
+}
+
+
+#posts {
+  margin-bottom: 15px;
+}

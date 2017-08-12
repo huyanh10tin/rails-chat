@@ -1,0 +1,28 @@
+<h1>Pending Requests</h1>
+<div class="columns is-multiline">
+<% @sent_requests.each do |user| %>
+    <!-- column -->
+    <div class="column is-6">
+      <!-- card -->
+      <div class="card">
+
+        <!-- card-header -->
+        <header class="card-header">
+          <%= link_to image_tag(user.image_url_or_default), profile_user_path(user), class: "hvr-grow" %>
+          <p class="card-header-title"><%= user.titleize_name %></p>
+        </header>
+        <!-- close header -->
+
+        <!-- card-content -->
+        <div class="card-content">
+          <div class="content">
+          <%= link_to "Cancel", confirm_path(friend: user.id), method: :post %>
+          </div>
+        </div>
+        <!-- close content -->
+      </div>
+      <!-- close card -->
+    </div>
+    <!-- close column -->
+  <% end %>
+</div>

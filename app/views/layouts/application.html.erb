@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Humanbook</title>
+    <title>RailsBook</title>
+    <link rel="icon" href="http://coolspotters.com/files/photos/26546/ruby-on-rails-profile.png">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -16,12 +17,16 @@
           </a>
           <div class="navbar-item">
             <div class="field">
-              <div class="control has-icons-right">
+              <%= form_tag(search_path, id: "search-form") do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+              <% end %>
+
+              <!-- <div class="control has-icons-right">
                 <input class="input" type="text" placeholder="Search users">
                 <span class="icon is-right is-small">
                   <%= fa_icon("search") %>
                 </span>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -38,22 +43,23 @@
             <% if current_user %>
               <%= link_to profile_path, class: "navbar-item" do %>
                 <%= image_tag current_user.image_url_or_default %>
-                &nbsp;<%= current_user.titleize_name %>
+                &nbsp;<%= current_user.email %>
               <% end %>
 
               <div class="navbar-item has-dropdown is-hoverable">
                   <%= link_to "Inbox", inbox_messages_path, class: "navbar-item" %>
-              </div> 
+              </div>
 
               <div class="navbar-item has-dropdown is-hoverable">
                 <a href="/" class="navbar-link">
                   <%= icon("users", "Friends") %>
                 </a>
 
-
                 <div class="navbar-dropdown">
                   <%= link_to "Friends (#{current_user.friends.count})", friends_path, class: "navbar-item" %>
-                  <%= link_to "Friend Requests", friends_path, class: "navbar-item" %>
+                  <%= link_to "Friend Requests(#{current_user.received_requests.count})", received_requests_path, class: "navbar-item" %>
+                  <%= link_to "Sent Requests(#{current_user.sent_requests.count})", sent_requests_path, class: "navbar-item" %>
+                  <%= link_to "Users", users_path, class: "navbar-item" %>
                 </div>
               </div>
 
@@ -67,9 +73,14 @@
       </nav>
     </div>
     <%= flash_messages %>
-
     <div class="container" style="margin-top: 20px">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
   </body>
 </html>
+<div>
+
+
+
+
+</div>

@@ -7,27 +7,41 @@
   </div>
 </section>
 
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>Avatar:</th>
-      <th>Name:</th>
-      <th>Email:</th>
-      <th>Action:</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <% @friends.each do |f| %>
-    <tr>
-      <th>
-        <figure class="image is-128x128">
-          <%= image_tag(f.image_url) %>
-        </figure>
-      </th>
-      <th><%= f.titleize_name %></th>
-      <th><%= f.email %></th>
-      <th></th>
-    </tr>
-    <% end %>
-  </tfoot>
-</table>
+<div class="columns is-multiline">
+  <% @friends.each do |another_user| %>
+  <% next if current_user.id == another_user.id %>
+    <!-- column -->
+    <div class="column is-6">
+      <!-- card -->
+      <div class="card">
+
+        <!-- card-header -->
+        <header class="card-header">
+          <%= link_to image_tag(another_user.image_url_or_default), profile_user_path(another_user), class: "hvr-grow" %>
+          <p class="card-header-title"><%= another_user.titleize_name %></p>
+        </header>
+        <!-- close header -->
+
+        <!-- card-content -->
+        <div class="card-content">
+          <div class="content">
+            <% if current_user.is_friend?(another_user) %>
+              <%= link_to icon("user-times", "Unfriend"), remove_friend_path(user_id: another_user.id), class: "button is-danger add-remove", method: :delete %>
+            <% else %>
+              <%= form_for current_user.friendships.build(friend: another_user, status: "pending", user_id: another_user.id) do |f| %>
+                <%= f.hidden_field :user_id %>
+                <%= f.hidden_field :friend_id %>
+
+                <%= f.hidden_field :status %>
+                <button class="button is-primary add-remove"><%= icon("user-plus", "Add Friend") %></button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!-- close content -->
+      </div>
+      <!-- close card -->
+    </div>
+    <!-- close column -->
+  <% end %>
+</div>

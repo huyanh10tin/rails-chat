@@ -3,10 +3,8 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
-
-  # me ==> friendships
-  # friendship ==> friend
-  # friendships ==> friends
+  has_many :posts
+  has_many :comments
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive: false}
@@ -27,13 +25,6 @@ class User < ApplicationRecord
     user.image_url = auth[:info][:image]
     user.name = auth[:info][:name]
     user.password = SecureRandom.hex
-    #
-    # Set other properties on user here. Just generate a random password. User does not have to use it.
-    # You may want to call user.save! to figure out why user can't save
-    #
-    # Finally:
-    # - if user doesn't save, return false
-    # - if user did save, return user
     user.save && user
   end
 
@@ -63,18 +54,25 @@ class User < ApplicationRecord
   end
 
   def friends
-    friendships.map {|fs| User.find(fs.friend_id) }
+    fs = friendships.select {|fs| fs.status == "accepted"}
+    fs.map {|fs| User.find(fs.friend_id) }
+  end
+
+  def received_requests
+    friendships.where(status: nil).map {|fs| User.find(fs.friend_id)}
   end
 
   def friend_names
     friends.map{|e| e.name}
   end
 
-  def self.except(user)
-    where.not(id: user.id)
+  def sent_requests
+    friends = friendships.map {|e| (e.user_id == id && e.status == "pending") ? e : next}
+    friends.delete(nil)
+    friends.map { |friend| User.find(friend[:friend_id]) }
   end
 
   def self.recipient_options(user)
-    except(user).map{|e| [e.titleize_name, e.id]}
+    user.friends.map{|e| [e.titleize_name, e.id]}
   end
 end
