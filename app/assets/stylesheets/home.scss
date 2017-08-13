@@ -36,23 +36,3 @@ span.icon {
 #posts {
   margin-top: 20px;
 }
-
-[id*="comment_"]:hover {
-  .comment-destroy {
-    transition-delay:1s;
-    opacity: 1;
-  }
-}
-
-.comment-destroy {
-  opacity: 0;
-  width: 15px;
-  height: 15px;
-}
-
-.form-delete-comment {
-  display: inline;
-}
-.form-comment {
-  display: inline;
-}

@@ -29,12 +29,12 @@
 </div>
 
 <div class="card">
-  <%= form_for post.comments.build, class: "form-comment" do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :post_id, value: post.id %>
+  <%= form_for post.comments.build do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :post_id, value: post.id %>
     <div class="field has-addons">
       <%= f.text_field :body, class: "input", placeholder: "Comment..." %>
-      <%= f.submit "Comment", class: "button is-primary", style: "margin-left: 15px; float: right" %>
+      <%= f.submit "Comment", class: "button is-primary" %>
+      <% end %>
     </div>
-    <% end %>
 </div>

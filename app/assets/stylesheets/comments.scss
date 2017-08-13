@@ -1,3 +1,22 @@
-// Place all the styles related to the comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+[id*="comment_"]:hover {
+  .comment-destroy {
+    transition-delay:1s;
+    opacity: 1;
+  }
+}
+
+.comment-destroy {
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+}
+
+.form-delete-comment {
+  display: inline;
+}
+
+.comment {
+  display:flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
