@@ -1,0 +1,8 @@
+<div class="comment" id="comment_<%= comment.id %>">
+  <%= link_to "#{comment.user.name}: ", profile_user_path(comment.user) %>
+  <%= comment.body %>
+
+  <%= form_tag comment_path(comment), class: "form-delete-comment", method: :delete do %>
+  <%= image_submit_tag("X.png", class: "comment-destroy") %>
+  <% end %>
+</div>
