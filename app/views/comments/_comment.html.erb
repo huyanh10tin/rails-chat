@@ -1,9 +1,13 @@
 <div class="comment" id="comment_<%= comment.id %>">
-  <%= image_tag(current_user.image_url_or_default, size: "30x30", style: "margin-right: 10px") %>
-  <%= link_to "#{comment.user.name} ", profile_user_path(comment.user), style: "font-weight: bold" %>&nbsp
-  <%= comment.body %>&nbsp
+  <% if current_user %>
+    <%= image_tag(comment.user.image_url_or_default, size: "30x30", style: "margin-right: 10px") %>
+    <%= link_to "#{comment.user.name} ", profile_user_path(comment.user), style: "font-weight: bold" %>&nbsp
+    <%= comment.body %>&nbsp
 
-  <%= form_tag comment_path(comment), class: "form-delete-comment", method: :delete do %>
-  <%= image_submit_tag("X.png", class: "comment-destroy") %>
+    <% if current_user.comments.include?(comment) %>
+      <%= form_tag comment_path(comment), class: "form-delete-comment", method: :delete do %>
+      <%= image_submit_tag("X.png", class: "comment-destroy") %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
