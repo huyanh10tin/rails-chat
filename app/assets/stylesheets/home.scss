@@ -36,3 +36,15 @@ span.icon {
 #posts {
   margin-top: 20px;
 }
+
+#like {
+  background:url(thumbs_up.png);
+  height: 15px;
+  width: 15px;
+}
+
+#actions {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
