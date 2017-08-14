@@ -78,4 +78,12 @@ class User < ApplicationRecord
   def self.recipient_options(user)
     user.friends.map{|e| [e.titleize_name, e.id]}
   end
+
+  def liked_post?(post)
+    liked_posts.include?(post)
+  end
+
+  def like_id(id, post)
+    like = post.likes.where(user_id: id)[0]
+  end
 end

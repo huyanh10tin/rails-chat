@@ -6,6 +6,7 @@
 @import "friends";
 @import "hover";
 @import "comments";
+@import "posts";
 
 [class*="fa-options_"] {
   color: red;
@@ -15,4 +16,18 @@ html,
 body {
   background-color: #e9ebee;
   height: 100%;
+}
+.thumbs-down, .thumbs-up {
+  height: 15px;
+  width: 15px;
+}
+.is-like {
+  border: none;
+  background-color: none;
+  color: $primary
+}
+.is-unlike {
+  border: none;
+  background-color: none;
+  color: $primary
 }

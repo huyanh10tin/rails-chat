@@ -17,20 +17,20 @@
   </div>
 
   <footer class="card-footer" id="actions">
-
-    <span class="card-footer-item">
-      <%= form_for current_user.likes.build do |f| %>
-        <%= f.hidden_field :post_id, value: post.id %>
-        <div class="field">
-          <div class="control">
-            <button class="button is-primary hvr-grow">
-              <%= icon("thumbs-up", "Like") %>
-            </button>
-          </div>
-        </div>
-      <% end %>
-      <%= 'Likes ' + post.likes.count.to_s if post.likes.count > 1 %>
-    </span>
+    <% if current_user.liked_post?(post) %>
+      <span class="card-footer-item">
+        <%= form_tag like_path(current_user.like_id(current_user.id, post)), method: :delete do %>
+          <%= submit_tag "Unlike", class:"button is-unlike" %><%= 'Likes ' + post.likes.count.to_s if post.likes.count > 1 %>
+        <% end %>
+      </span>
+    <% else %>
+      <span class="card-footer-item">
+        <%= form_for current_user.likes.build do |f| %>
+          <%= f.hidden_field :post_id, value: post.id %>
+          <%= f.submit "Like", class:"button is-like" %><%= 'Likes ' + post.likes.count.to_s if post.likes.count > 1 %>
+        <% end %>
+      </span>
+    <% end %>
     <a class="card-footer-item">Comment</a>
   </footer>
 </div>
