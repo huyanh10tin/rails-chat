@@ -4,13 +4,20 @@ class FriendshipsController < ApplicationController
     current_user.friendships.last.confirm
     Friendship.create!(user_id: params[:friendship][:friend_id], friend_id: params[:friendship][:user_id])
 
-    redirect_to users_path
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js { render "create", :locals => {user_id: params[:friendship][:friend_id]} }
+    end
   end
 
   def destroy
     current_user.friendships.where(friend: params[:user_id]).first.delete
     Friendship.where(user_id: params[:user_id], friend_id: current_user.id)[0].destroy
-    redirect_to friends_path
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js { render "destroy", :locals => {user_id: params[:user_id]} }
+    end
   end
 
   def confirm
@@ -20,7 +27,7 @@ class FriendshipsController < ApplicationController
     friendship = Friendship.where("user_id = ? AND friend_id = ?", params[:friend], current_user.id)[0]
     friendship.confirm
     friendship.save!
-    redirect_to received_requests_path
+    redirect_back(fallback_location: root_path)
   end
 
   def received_requests

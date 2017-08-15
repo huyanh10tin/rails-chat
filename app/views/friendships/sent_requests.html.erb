@@ -16,7 +16,8 @@
         <!-- card-content -->
         <div class="card-content">
           <div class="content">
-          <%= link_to "Cancel", confirm_path(friend: user.id), method: :post %>
+            <%= user.id %>
+          <%= link_to "Cancel", remove_friend_path(user_id: user.id), method: :delete %>
           </div>
         </div>
         <!-- close content -->

@@ -35,12 +35,8 @@ class User < ApplicationRecord
     image_url.presence || "http://lorempixel.com/128/128/sports/Fake-User/"
   end
 
-  def add_friend(another_user)
-    friends << another_user
-  end
-
-  def is_friend?(another_user)
-    friends.include?(another_user)
+  def is_friend?(user)
+    friends.include?(user)
   end
 
   def self.generate_users(n = 5, gender = "female")

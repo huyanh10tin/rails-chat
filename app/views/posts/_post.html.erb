@@ -1,16 +1,24 @@
 <div class="card" id="posts">
   <div class="card-content">
     <div class="media">
-      <div class="media-left">
+      <div class="media-left js-avatar">
         <figure class="image is-48x48">
           <%= link_to image_tag(post.user.image_url_or_default), profile_user_path(post.user), style: "float: left" %>
         </figure>
+
+        <div class="js-avatar-card">
+          <figure class="image is-100x100">
+            <%= link_to image_tag(post.user.image_url_or_default), profile_user_path(post.user), style: "float: left" %>
+          </figure>
+        </div>
       </div>
+
       <div class="media-content">
         <p class="title is-4"><%= link_to "#{post.user.titleize_name}: ", profile_user_path(post.user) %></p>
         <p class="subtitle is-6"><%= time_ago_in_words(post.created_at) %> ago</p>
       </div>
     </div>
+
     <div class="content" style="padding-bottom: 15px;">
       <%= post.body %>
     </div>
@@ -20,14 +28,26 @@
     <% if current_user.liked_post?(post) %>
       <span class="card-footer-item">
         <%= form_tag like_path(current_user.like_id(current_user.id, post)), method: :delete do %>
-          <%= submit_tag "Unlike", class:"button is-unlike" %><%= 'Likes ' + post.likes.count.to_s if post.likes.count > 1 %>
+          <div class="field">
+            <div class="control">
+              <button class="button is-unlike">
+                  <%= icon("thumbs-down", "Unlike #{'Likes ' + post.likes.count.to_s if post.likes.count > 1}") %>
+              </button>
+            </div>
+          </div>
         <% end %>
       </span>
     <% else %>
       <span class="card-footer-item">
         <%= form_for current_user.likes.build do |f| %>
           <%= f.hidden_field :post_id, value: post.id %>
-          <%= f.submit "Like", class:"button is-like" %><%= 'Likes ' + post.likes.count.to_s if post.likes.count > 1 %>
+          <div class="field">
+            <div class="control">
+              <button class="button is-like">
+                  <%= icon("thumbs-up", "Like #{'Likes ' + post.likes.count.to_s if post.likes.count > 1}") %>
+              </button>
+            </div>
+          </div>
         <% end %>
       </span>
     <% end %>
