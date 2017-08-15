@@ -53,3 +53,4 @@ gem "jquery-rails"
 gem 'omniauth'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'simplecov', :require => false, :group => :test
+gem 'faker'

@@ -12,5 +12,9 @@ users.each do |f|
   Friendship.create user_id: f, friend_id: 1
 end
 
-
-Friendship.where("user_id = ? AND friend_id = ?", 1, 2)
+users.each do |user|
+  a = Post.create(user_id: user, body: (Faker::Lorem.paragraph(3, true, 10)))
+  Random.rand(1..10).times do |f|
+    a.likes.build(user_id: 2).save
+  end
+end
