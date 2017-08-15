@@ -16,7 +16,6 @@
         <!-- card-content -->
         <div class="card-content">
           <div class="content js-user-<%= other_user.id %>">
-            <%= other_user.id %>
             <% if current_user.sent_requests.include?(other_user) %>
               <%= link_to icon("user-times", "Cancel Request"), remove_friend_path(user_id: other_user.id), class: "button is-danger add-remove", method: :delete, remote: true %>
             <% else %>

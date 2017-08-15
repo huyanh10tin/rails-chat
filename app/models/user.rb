@@ -1,13 +1,16 @@
 class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   has_many :friends, through: :friendships
+  has_many :liked_posts, through: :likes, source: :post
+
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
-  has_many :posts
-  has_many :comments
 
-  has_many :likes
-  has_many :liked_posts, through: :likes, source: :post
+
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive: false}
@@ -16,6 +19,10 @@ class User < ApplicationRecord
 
   def titleize_name
     name.titleize if name
+  end
+
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%")
   end
 
   def self.from_omniauth(auth)
@@ -40,7 +47,7 @@ class User < ApplicationRecord
   end
 
   def self.generate_users(n = 5, gender = "female")
-    url = "https://randomuser.me/api?results=#{n}&gender=#{gender}"
+    url = "https://randomuser.me/api?results=#{n}&gender=#{gender}&nat=US"
     body = HTTP.get(url).parse
     body["results"].each do |person|
       hash = {}
@@ -48,6 +55,8 @@ class User < ApplicationRecord
       hash[:email] = person["email"]
       hash[:password] = person["login"]["password"]
       hash[:image_url] = person["picture"]["large"]
+      hash[:image_url] = person["location"]["state"]
+      hash[:image_url] = person["location"]["city"]
       User.create! hash
     end
   end

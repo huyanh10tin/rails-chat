@@ -12,4 +12,6 @@ class Post < ApplicationRecord
   def likes_count
     liking_users.count
   end
+
+  self.per_page = 3
 end
