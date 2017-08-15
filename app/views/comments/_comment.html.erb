@@ -5,7 +5,7 @@
     <%= comment.body %>&nbsp
 
     <% if current_user.comments.include?(comment) %>
-      <%= form_tag comment_path(comment), class: "form-delete-comment", method: :delete do %>
+      <%= form_tag comment_path(comment), class: "form-delete-comment", method: :delete, remote: true do %>
       <%= image_submit_tag("X.png", class: "comment-destroy") %>
       <% end %>
     <% end %>

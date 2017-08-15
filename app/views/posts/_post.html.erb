@@ -56,17 +56,17 @@
 </div>
 
 <div class="card is-multiline">
-  <div class="card-content">
+  <div class="card-content js-comments-<%= post.id %>">
     <%= render post.comments %>
   </div>
 </div>
 
 <div class="card">
-  <%= form_for post.comments.build do |f| %>
+  <%= form_for post.comments.build, remote: true do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :post_id, value: post.id %>
     <div class="field has-addons">
-      <%= f.text_field :body, class: "input", placeholder: "Comment..." %>
+      <%= f.text_field :body, class: "input", placeholder: "Comment...", autocomplete: "off" %>
       <%= f.submit "Comment", class: "button is-primary" %>
       <% end %>
     </div>

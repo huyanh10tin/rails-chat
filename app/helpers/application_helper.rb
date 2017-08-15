@@ -16,8 +16,12 @@ module ApplicationHelper
   def icon(icon_name, text)
     content_tag(:span, fa_icon(icon_name), class: "icon") + content_tag(:span, text)
   end
-  
+
   def medium_icon(icon_name, text)
       content_tag(:span, fa_icon(icon_name), class: "icon is-medium") + content_tag(:span, text)
+  end
+
+  def add_comment(comment)
+    "<div class='comment' id='comment_#{comment.id}'> hello</div>"
   end
 end
