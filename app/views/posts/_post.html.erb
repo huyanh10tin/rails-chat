@@ -1,9 +1,73 @@
 <div class="card" id="posts">
   <div class="card-content">
-    <%= post.body %>
-    <div class="card-footer">
-      <%= post.user.name %>
-      <div class="card-footer-item"></div>
+    <div class="media">
+      <div class="media-left js-avatar">
+        <figure class="image is-48x48">
+          <%= link_to image_tag(post.user.image_url_or_default), profile_user_path(post.user), style: "float: left" %>
+        </figure>
+
+        <div class="js-avatar-card">
+          <figure class="image is-100x100">
+            <%= link_to image_tag(post.user.image_url_or_default), profile_user_path(post.user), style: "float: left" %>
+          </figure>
+        </div>
+      </div>
+
+      <div class="media-content">
+        <p class="title is-4"><%= link_to "#{post.user.titleize_name}: ", profile_user_path(post.user) %></p>
+        <p class="subtitle is-6"><%= time_ago_in_words(post.created_at) %> ago</p>
+      </div>
+    </div>
+
+    <div class="content" style="padding-bottom: 15px;">
+      <%= post.body %>
     </div>
   </div>
+
+  <footer class="card-footer" id="actions">
+    <% if current_user.liked_post?(post) %>
+      <span class="card-footer-item">
+        <%= form_tag like_path(current_user.like_id(current_user.id, post)), method: :delete do %>
+          <div class="field">
+            <div class="control">
+              <button class="button is-unlike">
+                  <%= icon("thumbs-down", "Unlike #{'Likes ' + post.likes.count.to_s if post.likes.count > 1}") %>
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </span>
+    <% else %>
+      <span class="card-footer-item">
+        <%= form_for current_user.likes.build do |f| %>
+          <%= f.hidden_field :post_id, value: post.id %>
+          <div class="field">
+            <div class="control">
+              <button class="button is-like">
+                  <%= icon("thumbs-up", "Like #{'Likes ' + post.likes.count.to_s if post.likes.count > 1}") %>
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </span>
+    <% end %>
+    <a class="card-footer-item">Comment</a>
+  </footer>
+</div>
+
+<div class="card is-multiline">
+  <div class="card-content js-comments-<%= post.id %>">
+    <%= render post.comments %>
+  </div>
+</div>
+
+<div class="card">
+  <%= form_for post.comments.build, remote: true do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :post_id, value: post.id %>
+    <div class="field has-addons">
+      <%= f.text_field :body, class: "input", placeholder: "Comment...", autocomplete: "off" %>
+      <%= f.submit "Comment", class: "button is-primary" %>
+      <% end %>
+    </div>
 </div>

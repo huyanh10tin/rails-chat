@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
   def require_login
     unless current_user
-      redirect_to root_path, flash: {error: "Access denied."}
+      redirect_to new_user_path, flash: {error: "You must Login or Create an Account to view this page."}
     end
   end
 

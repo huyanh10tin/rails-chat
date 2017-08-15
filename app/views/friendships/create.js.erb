@@ -1,0 +1,2 @@
+console.log("<%= user_id %>");
+$(".js-user-<%= user_id %>").html("<a class='button is-danger add-remove' rel='nofollow' data-method='delete' data-remote='true' href='/remove_friend?user_id=<%= user_id %>'><span class='icon'><i class='fa fa-user-times'></i></span><span>Cancel Request</span></a>")

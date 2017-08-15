@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
 
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
+
   validates :name, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive: false}
 
@@ -32,12 +35,8 @@ class User < ApplicationRecord
     image_url.presence || "http://lorempixel.com/128/128/sports/Fake-User/"
   end
 
-  def add_friend(another_user)
-    friends << another_user
-  end
-
-  def is_friend?(another_user)
-    friends.include?(another_user)
+  def is_friend?(user)
+    friends.include?(user)
   end
 
   def self.generate_users(n = 5, gender = "female")
@@ -74,5 +73,13 @@ class User < ApplicationRecord
 
   def self.recipient_options(user)
     user.friends.map{|e| [e.titleize_name, e.id]}
+  end
+
+  def liked_post?(post)
+    liked_posts.include?(post)
+  end
+
+  def like_id(id, post)
+    like = post.likes.where(user_id: id)[0]
   end
 end

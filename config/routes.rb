@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   delete "remove_friend" => "friendships#destroy"
 
   resources :friendships
+  resources :posts
+  resources :comments
+  resources :likes
+
   resources :users do
     member do
       get 'profile'

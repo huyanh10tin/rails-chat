@@ -1,13 +1,21 @@
 <div class="columns">
   <div class="column is-3">
     <aside class="menu">
-      <p class="menu-label">Profile</p>
       <div class="field">
         <div class="control">
-          <%= image_tag @user.image_url_or_default %>
+          <%= image_tag @user.image_url_or_default, size: "300x300" %>
         </div>
       </div>
       <ul class="menu-list">
       </ul>
     </aside>
   </div>
+  <div class="column profile-column">
+    <div class="header">
+      <h1><%= @user.titleize_name %></h1>
+    </div>
+    <div class="body">
+        <%= render @posts %>
+    </div>
+  </div>
+</div>
