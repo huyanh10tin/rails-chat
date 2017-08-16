@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "toggle_like" => "likes#toggle"
 
   post 'search' => "home#index"
   post 'confirm' => "friendships#confirm"
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
   resources :friendships
   resources :posts
   resources :comments
-  resources :likes
 
   resources :users do
     member do

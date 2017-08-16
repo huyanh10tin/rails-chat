@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.sent_messages.build message_params
 
-    if @message.save 
+    if @message.save
       redirect_to sent_messages_path
     else
       flash.now[:error] = "Error: #{@message.errors.full_messages.to_sentence}"

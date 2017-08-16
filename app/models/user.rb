@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
   has_many :posts, dependent: :destroy
-  has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_many :friends, through: :friendships
-  has_many :liked_posts, through: :likes, source: :post
+  has_many :likes, dependent: :destroy
 
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
@@ -84,11 +84,19 @@ class User < ApplicationRecord
     user.friends.map{|e| [e.titleize_name, e.id]}
   end
 
-  def liked_post?(post)
-    liked_posts.include?(post)
-  end
-
   def like_id(id, post)
     like = post.likes.where(user_id: id)[0]
+  end
+
+  def toggle_like!(item)
+    if like = likes.where(item: item).first
+      like.destroy
+    else
+      likes.where(item: item).create!
+    end
+  end
+
+  def liking?(item)
+    likes.where(item: item).exists?
   end
 end

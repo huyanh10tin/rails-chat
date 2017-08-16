@@ -5,7 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create! name: "Loi Tran", email: "loi@coderschool.vn", password: "asdf", state: "Florida", city: "Tallahassee"
+a = User.create! name: "Loi Tran", email: "loi@coderschool.vn", password: "asdf", state: "Florida", city: "Tallahassee"
+a.image_url = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-1/p320x320/14633014_10154745913714359_6100717154322258576_n.jpg?oh=68aa05d842d0ee27ae6dc66b0ac4fb41&oe=5A27BEE1"
+a.save
 
 def generate_users(n = 5, gender = "female")
   url = "https://randomuser.me/api?results=#{n}&gender=#{gender}&nat=US"
@@ -18,6 +20,9 @@ def generate_users(n = 5, gender = "female")
     hash[:image_url] = person["picture"]["large"]
     hash[:state] = person["location"]["state"].capitalize
     hash[:city] = person["location"]["city"].capitalize
+    hash[:position] = Faker::Job.title
+    hash[:school] = Faker::University.name
+    hash[:quote] = Faker::Movie.quote
     User.create! hash
   end
 end
@@ -33,11 +38,14 @@ end
 
 users.each do |user|
   puts "Generating posts"
-  a = Post.create(user_id: user, body: (Faker::Lorem.paragraph(3, true, 10)))
-  time = Random.rand(1..100)
-  a.created_at = time.hours.ago
-  a.save
-  Random.rand(1..30).times do |f|
-    a.likes.build(user_id: 2).save
+  number_of_posts = Random.rand(1..5)
+  number_of_posts.times do
+    post = Post.create(user_id: user, body: (Faker::Lorem.paragraph(3, true, 30)))
+    time = Random.rand(1..1000)
+    post.created_at = time.hours.ago
+    post.save
+    Random.rand(1..30).times do |f|
+      post.likes.build(user_id: 2).save
+    end
   end
 end
