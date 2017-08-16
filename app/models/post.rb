@@ -8,5 +8,9 @@ class Post < ApplicationRecord
     where("body ILIKE ?", "%#{search}%")
   end
 
+  def comments_count
+    comments.count > 2 ? " Comments #{comments.count}" : " Comment"
+  end
+
   self.per_page = 3
 end
