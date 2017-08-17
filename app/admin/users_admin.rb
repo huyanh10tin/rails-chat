@@ -17,14 +17,17 @@ Trestle.resource(:users) do
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |user|
-  #   text_field :name
-  #
-  #   row do
-  #     col(xs: 6) { datetime_field :updated_at }
-  #     col(xs: 6) { datetime_field :created_at }
-  #   end
-  # end
+  form do |user|
+    text_field :name
+    text_field :email
+    password_field :password
+    text_field :image_url
+    text_field :city
+    text_field :state
+    text_field :position
+    text_field :school
+    text_field :quote
+  end
 
   # By default, all parameters passed to the update and create actions will be
   # permitted. If you do not have full trust in your users, you should explicitly
