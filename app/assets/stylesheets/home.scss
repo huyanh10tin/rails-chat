@@ -50,5 +50,39 @@ span.icon {
 }
 
 .hidden {
-  display: none;
+  display:none;
+  opacity:0;
+}
+
+.active {
+  display: block;
+  opacity:1;
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: .5s;
+  animation-name: fadeIn;
+  animation-duration: .5s;
+}
+
+#test {
+    width: 100px;
+    height: 40px;
+    background: red;
+}
+
+@-webkit-keyframes fadeIn {
+0% { opacity: 0; }
+20% { opacity: 0; }
+40% { opacity: 0.3; }
+60% { opacity: 0.5; }
+80% { opacity: 0.9; }
+100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+0% { opacity: 0; }
+20% { opacity: 0; }
+40% { opacity: 0.3; }
+60% { opacity: 0.5; }
+80% { opacity: 0.9; }
+100% { opacity: 1; }
 }

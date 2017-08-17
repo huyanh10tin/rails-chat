@@ -19,7 +19,21 @@
       <h1><%= @user.titleize_name %></h1>
     </div>
     <div class="body">
+      <% if params[:id] == current_user.id %>
+        <div class="field">
+          <label class="label">What's on your mind?</label>
+          <div class="control has-icons-left">
+            <%= form_for @post do |f| %>
+              <%= f.text_field :body, class: "input", placeholder: "I'm feeling..." %>
+              <span class="icon is-small is-left">
+                <i class="fa fa-comments"></i>
+              </span>
+            <% end  %>
+          </div>
+        </div>
+      <% else  %>
         <%= render @posts %>
+      <% end %>
     </div>
   </div>
 </div>

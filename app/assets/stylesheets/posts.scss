@@ -11,27 +11,6 @@
   color: $primary
 }
 
-// .js-avatar:hover {
-//   position: relative;
-//
-//   figure {
-//     transition-delay:1s;
-//     opacity: 0;
-//     display: none;
-//   }
-//   .js-avatar-card {
-//     transition-delay:1s;
-//     position: absolute;
-//     top: -50;
-//     left: -500;
-//     background-color: black;
-//     width: 500px;
-//     height: 200px;
-//     float:left;
-//     opacity: 1;
-//   }
-// }
-
 .js-avatar-card {
   position: absolute;
   top: 50;
@@ -41,4 +20,8 @@
   height: 200px;
   float:left;
   opacity: 0;
+}
+.hidden-comment {
+  display:none;
+  opacity:0;
 }

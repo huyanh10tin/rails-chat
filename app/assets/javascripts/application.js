@@ -17,17 +17,25 @@ $(document).ready(function() {
     })
   })
 
-
-$(window).on('scroll', function() {
   $("div.post").on("click", ".js-comment-button", (e) => {
     e.preventDefault();
-    form = $(e.target).parents(".post").children(".js-post-comment-form").removeClass("hidden")
+    form = $(e.target).parents(".post").children(".js-post-comment-form").removeClass("hidden").addClass("active");
     form.find("input.input").focus();
-    input = form.find("input.input")
+    input = form.find("input.input");
     input.on("focusout", function() {
-      form.addClass("hidden")
+      form.addClass("hidden").removeClass("active");
     })
   })
+  $(window).on('scroll', function() {
+    $("div.post").on("click", ".js-comment-button", (e) => {
+      e.preventDefault();
+      form = $(e.target).parents(".post").children(".js-post-comment-form").removeClass("hidden").addClass("active");
+      form.find("input.input").focus();
+      input = form.find("input.input");
+      input.on("focusout", function() {
+        form.addClass("hidden").removeClass("active");
+      })
+    })
 })
 
 

@@ -1,3 +1,10 @@
 $(".js-comments-<%= @comment.post.id %>").append("<%= j render @comment %>");
 $("input.input").val('');
-$(".comment-button-<%= @comment.post.id %>").html("<i class='fa fa-comment'></i><%= @comment.post.comments_count %>")
+$(".comment-button-<%= @comment.post.id %>")
+  .html("<i class='fa fa-comment'></i><%= @comment.post.comments_count %>");
+
+
+console.log($(".js-comments-<%= @comment.post.id %>").parent(".card.is-multiline"));
+$(".js-comments-<%= @comment.post.id %>").parent(".card.is-multiline")
+  .removeClass("hidden-comment").addClass("active");
+console.log($(".js-comments-<%= @comment.post.id %>").parent(".card.is-multiline"));
