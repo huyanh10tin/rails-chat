@@ -1,12 +1,14 @@
 @import "bulma-variables";
 @import "bulma";
 @import "font-awesome";
+@import "animate";
+@import "hover";
 @import "home";
 @import "users";
 @import "friends";
-@import "hover";
 @import "comments";
 @import "posts";
+
 
 [class*="fa-options_"] {
   color: red;
