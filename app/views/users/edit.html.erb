@@ -41,6 +41,10 @@
               <%= f.text_field :image_url, class: 'input' %>
             </div>
           </div>
+          <div class="field">
+            <%= f.label :avatar, class: "label" %>
+            <div class="control"><%= f.file_field :avatar, class: "input" %></div>
+          </div>          
           <%= f.submit "Save", class: "button is-primary" %>
         <% end %>
       </div>

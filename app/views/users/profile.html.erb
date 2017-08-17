@@ -6,12 +6,32 @@
           <%= image_tag @user.image_url_or_default, size: "300x300" %>
         </div>
       </div>
-      <ul class="menu-list">
-        <li><%= @user.quote %></li>
-        <li><%= @user.school %></li>
-        <li><%= @user.position %></li>
-        <li><%= @user.city + ", " + @user.state %></li>
-      </ul>
+      <nav class="panel">
+        <a class="panel-block is-active">
+            <span class="panel-icon">
+              <i class="fa fa-book"></i>
+            </span>
+            <%= @user.quote %>
+          </a>
+          <a class="panel-block">
+            <span class="panel-icon">
+              <i class="fa fa-book"></i>
+            </span>
+            <%= @user.position %>
+          </a>
+          <a class="panel-block">
+            <span class="panel-icon">
+              <i class="fa fa-book"></i>
+            </span>
+            <%= @user.school %>
+          </a>
+          <a class="panel-block">
+            <span class="panel-icon">
+              <i class="fa fa-book"></i>
+            </span>
+            <%= @user.city + ", " + @user.state %>
+          </a>
+      </nav>
     </aside>
   </div>
   <div class="column profile-column">

@@ -1,5 +1,5 @@
 deployment:
   staging:
     branch: master
-    heroku: 
+    heroku:
       appname: railsbuuk

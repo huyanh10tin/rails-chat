@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
+
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
@@ -39,7 +41,7 @@ class User < ApplicationRecord
   end
 
   def image_url_or_default
-    image_url.presence || "http://lorempixel.com/128/128/sports/Fake-User/"
+    avatar.url || image_url.presence || "http://lorempixel.com/128/128/sports/Fake-User/"
   end
 
   def is_friend?(user)

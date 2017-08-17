@@ -91,6 +91,10 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20161129)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     erubi (1.6.1)
     execjs (2.7.0)
     faker (1.8.4)
@@ -287,7 +291,9 @@ DEPENDENCIES
   bulma-rails!
   byebug
   capybara (~> 2.13)
+  carrierwave (~> 1.0)
   carrierwave-aws
+  dotenv-rails
   faker
   font-awesome-rails
   http
