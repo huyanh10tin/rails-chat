@@ -1,4 +1,3 @@
-
 <div class="post">
   <div class="card">
     <div class="card-content">
@@ -16,7 +15,6 @@
       </div>
 
       <div class="content" style="padding-bottom: 15px;">
-        <%= post.id %>
         <%= post.body %>
       </div>
     </div>
@@ -24,20 +22,24 @@
     <div class="card-footer" id="actions">
       <div class="level">
         <div class="level-left">
-          <% if current_user.liking?(post) %>
-            <%= link_to fa_icon("thumbs-down", text: "Unlike #{post.likes.count if post.likes.count > 2}"), toggle_like_path(post_id: post),
-                class: "level-item button is-white is-liked", method: "post" %>
-          <% else %>
-            <%= link_to fa_icon("thumbs-up", text: "Like #{post.likes.count if post.likes.count > 2}"), toggle_like_path(post_id: post),
-                class: "level-item button is-white", method: "post" %>
-          <% end %>
-          <%= link_to fa_icon("comment", text: "Comment"), "", class: "level-item button js-comment-button is-white"  %>
+          <div id="js-likes-<%= post.id %>">
+            <%= render partial: "posts/like_button", locals: {post: post, user: current_user} %>
+          </div>
+          <%= link_to fa_icon("comment", text: " #{post.comments_count}"), "", class: "level-item button js-comment-button is-white comment-button-#{post.id}"  %>
         </div>
       </div>
     </div>
+
+    <div class="card-footer">
+      <% if post.has_likes %>
+        <div class="card-footer-item" style="font-size: .7em">
+          <%= post.likes_partial.html_safe %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div class="card is-multiline">
+  <div class="card is-multiline <%= post.has_no_comments? %>">
     <div class="card-content js-comments-<%= post.id %>">
       <%= render post.comments %>
     </div>
@@ -49,7 +51,7 @@
       <%= f.hidden_field :post_id, value: post.id %>
       <div class="field">
         <div class="control has-icons-left">
-          <%= f.text_field :body, class: "input comment-body", placeholder: "Comment...", autocomplete: "off" %>
+          <%= f.text_field :body, class: "input comment-body", placeholder: "Comment...", autocomplete: "off", required: true %>
           <span class="icon is-small is-left">
             <i class="fa fa-comments"></i>
           </span>

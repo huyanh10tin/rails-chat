@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def profile
     @user = User.find(params[:id])
     @posts = @user.posts
+    @post = Post.new
   end
 
   def edit

@@ -12,15 +12,8 @@ RSpec.describe User, type: :model do
       it "has default image" do
         expect(loi.image_url_or_default).to eq "http://lorempixel.com/128/128/sports/Fake-User/"
       end
-
-      it "can send friend request" do
-        loi.add_friend(tai)
-
-        p loi.friends.count
-        p tai.received_requests.count
-
-        expect(0).to eq(1)
-      end
     end
+
+
 
 end

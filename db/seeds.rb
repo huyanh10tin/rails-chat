@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-a = User.create! name: "Loi Tran", email: "loi@coderschool.vn", password: "asdf", state: "Florida", city: "Tallahassee"
+a = User.create! name: "Loi Tran", email: "loi@coderschool.vn", password: "asdf", state: "Florida", city: "Tallahassee", position: "Getting Yelled at", school: "Florida State University", quote: "If it was easy, everyone would do it."
 a.image_url = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-1/p320x320/14633014_10154745913714359_6100717154322258576_n.jpg?oh=68aa05d842d0ee27ae6dc66b0ac4fb41&oe=5A27BEE1"
 a.save
 
@@ -45,7 +45,8 @@ users.each do |user|
     post.created_at = time.hours.ago
     post.save
     Random.rand(1..30).times do |f|
-      post.likes.build(user_id: 2).save
+      person = Random.rand(1..50)
+      post.likes.build(user_id: person).save
     end
   end
 end

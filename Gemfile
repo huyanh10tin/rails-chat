@@ -55,3 +55,4 @@ gem 'omniauth-facebook', '~> 4.0.0'
 gem 'simplecov', :require => false, :group => :test
 gem 'faker'
 gem 'will_paginate', '~> 3.1.0'
+gem 'trestle'
