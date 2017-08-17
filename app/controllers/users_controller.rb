@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "User created."
       login(@user)
-      UserMailer.welcome_email(@user).deliver_now
+      UserMailer.welcome_email(@user).deliver
       redirect_to root_path
     else
       render 'new'
