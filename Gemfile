@@ -55,11 +55,7 @@ gem 'omniauth-facebook', '~> 4.0.0'
 gem 'simplecov', :require => false, :group => :test
 gem 'faker'
 gem 'will_paginate', '~> 3.1.0'
-<<<<<<< HEAD
 gem 'trestle'
 gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
-=======
-gem 'trestle', '~> 0.8.2'
->>>>>>> 6865c35fb91d55dc05799681fd925dddb694dcb1
