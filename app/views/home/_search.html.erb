@@ -1,0 +1,58 @@
+<h1 class="search">Search</h1>
+<div class="tabs is-toggle">
+  <ul>
+    <li class="tab" data-panel="users">
+      <a>
+        <span class="icon is-small"><i class="fa fa-users"></i></span>
+        <span>People <%= "#{@users.count}" if @users.count > 1 %></span>
+      </a>
+    </li>
+    <li class="tab" data-panel="posts">
+      <a>
+        <span class="icon is-small"><i class="fa fa-newspaper-o"></i></span>
+        <span>Posts <%= "#{@posts.count}" if @users.count > 1 %></span>
+      </a>
+    </li>
+    <li class="tab" data-panel="videos">
+      <a>
+        <span class="icon is-small"><i class="fa fa-film"></i></span>
+        <span>Videos</span>
+      </a>
+    </li>
+    <li class="tab" data-panel="documents">
+      <a>
+        <span class="icon is-small"><i class="fa fa-file-text-o"></i></span>
+        <span>Documents</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<ul id="list">
+  <li class="users">
+    <div>
+      <% @users.each do |user| %>
+      <%= user.name %>
+      <% end  %>
+    </div>
+  </li>
+  <li class="hidden posts">
+    <div>
+      <div id="my-posts">
+        <%= render @posts %>
+      </div>
+      <div id="infinite-scrolling">
+        <%= will_paginate @posts %>
+      </div>
+    </div>
+    </li>
+  <li class="hidden videos">
+    <div>
+      Videos
+    </div>
+    </li>
+  <li class="hidden documents">
+    <div>
+      Documents
+    </div>
+  </li>
+</ul>

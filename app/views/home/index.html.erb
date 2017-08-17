@@ -6,5 +6,25 @@
   <% end %>
 </div>
 <div class="column is-10">
-  <%= render @posts %>
+  <div class="field">
+    <label class="label">What's on your mind?</label>
+    <div class="control has-icons-left">
+      <%= form_for @post do |f| %>
+        <%= f.text_field :body, class: "input", placeholder: "I'm feeling..." %>
+        <span class="icon is-small is-left">
+          <i class="fa fa-comments"></i>
+        </span>
+      <% end  %>
+    </div>
+  </div>
+  <% if params[:search] %>
+    <%= render 'search' %>
+  <% else %>
+    <div id="my-posts">
+      <%= render @posts %>
+    </div>
+    <div id="infinite-scrolling">
+      <%= will_paginate @posts %>
+    </div>
+  <% end %>
 </div>
