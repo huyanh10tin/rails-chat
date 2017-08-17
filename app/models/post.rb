@@ -39,5 +39,9 @@ class Post < ApplicationRecord
     comments.count == 0 ? 'hidden-comment' : ''
   end
 
+<<<<<<< HEAD
   self.per_page = 5
+=======
+  self.per_page = 10
+>>>>>>> 6865c35fb91d55dc05799681fd925dddb694dcb1
 end
