@@ -3,7 +3,6 @@ class PostsController < ApplicationController
     @post = current_user.posts.build post_params
 
     if @post.save
-      flash[:success] = "Post created!"
       redirect_back fallback_location: root_path
     else
       flash[:error] = "Could not create."
@@ -13,6 +12,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(:body, :wall_id)
   end
 end

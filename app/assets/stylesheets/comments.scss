@@ -16,6 +16,7 @@
 }
 
 .comment {
+  white-space: nowrap; overflow: hidden;
   display:flex;
   align-items: center;
   margin-bottom: 5px;

@@ -11,3 +11,15 @@
     <% end %>
   <% end %>
 </div>
+<div>
+  <%= form_tag toggle_like_path, method: :post, remote: true do %>
+  <%= hidden_field_tag :comment_id, comment.id %>
+    <div class="field">
+      <div class="control">
+        <button class="js-like-button-<%= comment.id %> button is-white <%= 'is-liked' if current_user.liking?(comment) %>" style="font-size: .5em">
+          <%= icon("thumbs-o-up", "Like") %>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -5,11 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-a = User.create! name: "Loi Tran", email: "loi@coderschool.vn", password: "asdf", state: "Florida", city: "Tallahassee", position: "Getting Yelled at", school: "Florida State University", quote: "If it was easy, everyone would do it."
-a.image_url = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-1/p320x320/14633014_10154745913714359_6100717154322258576_n.jpg?oh=68aa05d842d0ee27ae6dc66b0ac4fb41&oe=5A27BEE1"
-a.save
+me = User.create!(
+  name: "Loi Tran",
+  email: "loi@coderschool.vn",
+  password: "asdf",
+  state: "Florida",
+  city: "Tallahassee",
+  position: "Getting Yelled at",
+  school: "Florida State University",
+  quote: "If it was easy, everyone would do it.")
+
+me.image_url = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-1/p320x320/14633014_10154745913714359_6100717154322258576_n.jpg?oh=68aa05d842d0ee27ae6dc66b0ac4fb41&oe=5A27BEE1"
+me.save!
 
 def generate_users(n = 5, gender = "female")
+  puts "generating users"
+
   url = "https://randomuser.me/api?results=#{n}&gender=#{gender}&nat=US"
   body = HTTP.get(url).parse
   body["results"].each do |person|
@@ -38,13 +49,23 @@ end
 
 users.each do |user|
   puts "Generating posts"
-  number_of_posts = Random.rand(1..5)
-  number_of_posts.times do
+  # Number of posts per user
+  Random.rand(1..5).times do
     post = Post.create(user_id: user, body: (Faker::Lorem.paragraph(3, true, 30)))
     time = Random.rand(1..1000)
     post.created_at = time.hours.ago
+
+    # Number of comments per post
+    Random.rand(1..10).times do |f|
+      puts "Generating comments"
+      person = Random.rand(1..50)
+      post.comments.build(user_id: person, body: Faker::Lorem.paragraph(1, true, 3))
+    end
+
     post.save
+    # Number of likes per post
     Random.rand(1..30).times do |f|
+      puts "Generating likes"
       person = Random.rand(1..50)
       post.likes.build(user_id: person).save
     end

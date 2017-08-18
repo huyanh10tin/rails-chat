@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "User created."
       login(@user)
-      UserMailer.welcome_email(@user).deliver
+      UserMailer.welcome_email(@user).deliver_now
       redirect_to root_path
     else
       render 'new'
@@ -19,8 +19,9 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find(params[:id])
-    @posts = @user.posts
-    @post = Post.new
+    @posts = @user.posts + Post.where(wall_id: @user.id)
+    @posts.sort! { |b,a|  a.created_at <=> b.created_at }
+    @posts = @posts.uniq
   end
 
   def edit

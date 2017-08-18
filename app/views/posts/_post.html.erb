@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post" id="<%= dom_id post %>">
   <div class="card">
     <div class="card-content">
       <div class="media">
@@ -45,18 +45,5 @@
     </div>
   </div>
 
-  <div class="card js-post-comment-form hidden">
-    <%= form_for post.comments.build, remote: true do |f| %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.hidden_field :post_id, value: post.id %>
-      <div class="field">
-        <div class="control has-icons-left">
-          <%= f.text_field :body, class: "input comment-body", placeholder: "Comment...", autocomplete: "off", required: true %>
-          <span class="icon is-small is-left">
-            <i class="fa fa-comments"></i>
-          </span>
-          <% end %>
-        </div>
-      </div>
-  </div>
+  <%= render "comments/comment_form", post: post %>
 </div>

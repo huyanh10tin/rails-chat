@@ -1,2 +1,6 @@
+<% if @item.class == Post %>
 $("#js-likes-<%=@like.item.id%>").html(
   "<%= j render partial: 'posts/like_button', locals: {post: @item, user: @current_user} %>")
+<% else %>
+$(".js-like-button-<%= @item.id %>").toggleClass("is-liked");
+<% end %>

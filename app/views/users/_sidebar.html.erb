@@ -1,0 +1,35 @@
+<div class="column is-3">
+  <aside class="menu">
+    <div class="field">
+      <div class="control">
+        <%= image_tag @user.image_url_or_default, size: "250x250", style: "border: 3px solid white; border-radius: 3px" %>
+      </div>
+    </div>
+    <nav class="panel">
+      <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fa fa-info"></i>
+          </span>
+          <%= @user.quote %>
+        </a>
+        <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fa fa-briefcase"></i>
+          </span>
+          <%= @user.position %>
+        </a>
+        <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fa fa-book"></i>
+          </span>
+          <%= @user.school %>
+        </a>
+        <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fa fa-map-o"></i>
+          </span>
+          <%= @user.city + ", " + @user.state %>
+        </a>
+    </nav>
+  </aside>
+</div>

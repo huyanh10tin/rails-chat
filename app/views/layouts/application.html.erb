@@ -17,9 +17,14 @@
           </a>
           <div class="navbar-item">
             <div class="field">
-              <%= form_tag(search_path, id: "search-form") do %>
-                <%= text_field_tag :search, params[:search], placeholder: "Search Posts", required: true %>
-              <% end %>
+              <div class="control has-icons-left">
+                <%= form_tag(search_path, id: "search-form") do %>
+                  <%= text_field_tag :search, params[:search], class: "input", placeholder: "Search Posts", required: true %>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-search"></i>
+                  </span>
+                <% end %>
+              </div>
             </div>
           </div>
 
@@ -36,7 +41,7 @@
             <% if current_user %>
               <%= link_to profile_user_path(current_user), class: "navbar-item" do %>
                 <%= image_tag current_user.image_url_or_default %>
-                &nbsp;<%= current_user.email %>
+                &nbsp;<%= current_user.titleize_name %>
               <% end %>
 
               <div class="navbar-item has-dropdown is-hoverable">
@@ -66,7 +71,7 @@
       </nav>
     </div>
     <%= flash_messages %>
-    <div class="container" style="margin-top: 20px">
+    <div class="container">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
   </body>

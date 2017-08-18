@@ -91,11 +91,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.asset_host = 'https://rails-buuk.herokuapp.com/'
   config.action_mailer.delivery_method = :smtp
-  # SMTP settings for gmail
+
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV['SENDGRID_USERNAME'],
     :password => ENV['SENDGRID_PASSWORD'],
-    :SENDGRID_API_KEY:
+    :api_key => ENV['SENDGRID_API_KEY'],
     :domain => 'https://rails-buuk.herokuapp.com/',
     :address => 'smtp.sendgrid.net',
     :port => 587,

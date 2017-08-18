@@ -1,4 +1,23 @@
-.profile-column {
-  margin-top: 13px;
-  border: 1px solid black
+.wall {
+  width: 100%;
+  height: 100%;
+
+  .coverphoto {
+    background-image: url("fb_cover.jpg");
+    position: relative;
+    width: 100vw;
+    left: calc(-50vw + 50%);
+    right: calc(50vw + 50%);
+    background-color: red;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 225px;
+  }
+  .columns {
+    margin-left: 15px;
+    margin-top: -100px;
+  }
 }

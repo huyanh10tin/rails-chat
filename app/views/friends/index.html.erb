@@ -26,7 +26,8 @@
         <div class="card-content">
           <div class="content js-user-<%= another_user.id %>">
             <% if current_user.is_friend?(another_user) %>
-              <%= link_to icon("user-times", "Unfriend"), remove_friend_path(user_id: another_user.id), class: "button is-danger add-remove", data: {confirm: "Are you sure you want to remove #{another_user.titleize_name}?" }, method: :delete %>
+              <%= link_to icon("user-times", "Unfriend"), remove_friend_path(user_id: another_user.id), class: "button is-danger add-remove",
+                  data: {confirm: "Are you sure you want to remove #{another_user.titleize_name}?" }, method: :delete %>
             <% else %>
               <%= form_for current_user.friendships.build(friend: another_user, status: "pending", user_id: another_user.id) do |f| %>
                 <%= f.hidden_field :user_id %>

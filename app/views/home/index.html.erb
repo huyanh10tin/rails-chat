@@ -9,10 +9,11 @@
   <div class="field">
     <label class="label">What's on your mind?</label>
     <div class="control has-icons-left">
-      <%= form_for @post do |f| %>
+      <%= form_for current_user.posts.build do |f| %>
+        <%= f.hidden_field :wall_id, value: current_user.id %>
         <%= f.text_field :body, class: "input", placeholder: "I'm feeling..." %>
         <span class="icon is-small is-left">
-          <i class="fa fa-comments"></i>
+          <i class="fa fa-pencil-square-o"></i>
         </span>
       <% end  %>
     </div>

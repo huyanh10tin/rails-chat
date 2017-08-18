@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   end
 
   def comments_count
-    comments.count > 2 ? " Comments #{comments.count}" : " Comment"
+    comments.count > 2 ? "#{comments.count} Comments " : " Comment"
   end
 
   def likes_partial

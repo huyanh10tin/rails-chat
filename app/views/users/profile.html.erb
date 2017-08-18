@@ -1,59 +1,21 @@
-<div class="columns">
-  <div class="column is-3">
-    <aside class="menu">
-      <div class="field">
-        <div class="control">
-          <%= image_tag @user.image_url_or_default, size: "300x300" %>
+<div class="wall">
+
+  <div class="coverphoto">
+  </div>
+
+  <div class="columns">
+    <%= render 'sidebar' %>
+    <div class="column is-9">
+      <div class="header">
+        <h1><p style="color: red"><%= @user.titleize_name %></p></h1>
+      </div>
+      <div class="body">
+        <div class="column is-10 is-offset-1">
+          <%= render 'posts/post_form' %>
+          <%= render @posts %>
         </div>
       </div>
-      <nav class="panel">
-        <a class="panel-block is-active">
-            <span class="panel-icon">
-              <i class="fa fa-book"></i>
-            </span>
-            <%= @user.quote %>
-          </a>
-          <a class="panel-block">
-            <span class="panel-icon">
-              <i class="fa fa-book"></i>
-            </span>
-            <%= @user.position %>
-          </a>
-          <a class="panel-block">
-            <span class="panel-icon">
-              <i class="fa fa-book"></i>
-            </span>
-            <%= @user.school %>
-          </a>
-          <a class="panel-block">
-            <span class="panel-icon">
-              <i class="fa fa-book"></i>
-            </span>
-            <%= @user.city + ", " + @user.state %>
-          </a>
-      </nav>
-    </aside>
-  </div>
-  <div class="column profile-column">
-    <div class="header">
-      <h1><%= @user.titleize_name %></h1>
-    </div>
-    <div class="body">
-      <% if params[:id] == current_user.id %>
-        <div class="field">
-          <label class="label">What's on your mind?</label>
-          <div class="control has-icons-left">
-            <%= form_for @post do |f| %>
-              <%= f.text_field :body, class: "input", placeholder: "I'm feeling..." %>
-              <span class="icon is-small is-left">
-                <i class="fa fa-comments"></i>
-              </span>
-            <% end  %>
-          </div>
-        </div>
-      <% else  %>
-        <%= render @posts %>
-      <% end %>
     </div>
   </div>
+
 </div>
