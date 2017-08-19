@@ -5,7 +5,7 @@
 //= require_tree .
 
 
-$(document).ready(function() {
+$(function() {
   if ($(".search")) {
     tabs = $("li.tab").toArray();
 

@@ -1,3 +1,18 @@
+.comment {
+  display:flex;
+  padding: 15px;
+  img {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.comment-body {
+  top: 0px;
+  overflow-wrap: normal;
+  overflow-wrap: break-word;
+}
+
 [id*="comment_"]:hover {
   .comment-destroy {
     transition-delay:1s;
@@ -14,10 +29,11 @@
 .form-delete-comment {
   display: inline;
 }
-
-.comment {
-  white-space: nowrap; overflow: hidden;
-  display:flex;
+.comment-likes{
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-bottom: 5px;
+  p {
+    margin-bottom: 6px;
+  }
 }

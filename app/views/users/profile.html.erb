@@ -5,10 +5,12 @@
 
   <div class="columns">
     <%= render 'sidebar' %>
-    <div class="column is-9">
-      <div class="header">
-        <h1><p style="color: red"><%= @user.titleize_name %></p></h1>
-      </div>
+    <div class="column is-9 profile-column">
+      <section class="section profile-name">
+        <div class="container">
+          <h1 class="title name"><%= @user.name %></h1>
+        </div>
+      </section>
       <div class="body">
         <div class="column is-10 is-offset-1">
           <%= render 'posts/post_form' %>

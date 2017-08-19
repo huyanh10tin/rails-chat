@@ -10,8 +10,15 @@
 
         <div class="media-content">
           <p class="title is-4"><%= link_to "#{post.user.titleize_name}: ", profile_user_path(post.user) %></p>
-          <p class="subtitle is-6"><%= time_ago_in_words(post.created_at) %> ago</p>
+          <p class="subtitle is-6" style="font-size: .8em"><%= time_ago_in_words(post.created_at) %> ago</p>
         </div>
+
+        <% if post.belongs_to?(current_user) %>
+          <%= form_for post_path(post), method: :delete, remote: true do |f| %>
+            <%= f.hidden_field :post_id, value: post.id %>
+            <%= f.submit "Delete" %>
+          <% end %>
+        <% end %>
       </div>
 
       <div class="content" style="padding-bottom: 15px;">
@@ -41,7 +48,7 @@
 
   <div class="card is-multiline <%= post.has_no_comments? %>">
     <div class="card-content js-comments-<%= post.id %>">
-      <%= render post.comments %>
+      <%= render post.comments.order("created_at ASC") %>
     </div>
   </div>
 

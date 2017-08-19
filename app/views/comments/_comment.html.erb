@@ -1,25 +1,35 @@
 <div class="comment" id="comment_<%= comment.id %>">
-  <% if current_user %>
-    <%= image_tag(comment.user.image_url_or_default, size: "30x30", style: "margin-right: 10px") %>
-    <%= link_to "#{comment.user.name} ", profile_user_path(comment.user), style: "font-weight: bold" %>&nbsp
-    <%= comment.body %>&nbsp
+  <div class="columns">
+    <% if current_user %>
+      <%= image_tag(comment.user.image_url_or_default, size: "32x32", style: "margin-right: 10px") %>
 
-    <% if current_user.comments.include?(comment) %>
-      <%= form_tag comment_path(comment), class: "form-delete-comment", method: :delete, remote: true do %>
-      <%= image_submit_tag("X.png", class: "comment-destroy") %>
+      <div class="comment-body">
+        <%= link_to "#{comment.user.name} ", profile_user_path(comment.user), style: "font-weight: bold; white-space: pre;" %>
+        <%= comment.body %>
+
+        <div class="comment-likes">
+          <%= form_tag toggle_like_path, method: :post, remote: true do %>
+            <%= hidden_field_tag :comment_id, comment.id %>
+              <div class="field">
+                <div class="control">
+                  <button class="js-like-button-<%= comment.id %> button is-small is-white <%= 'is-liked' if current_user.liking?(comment) %>"
+                    style="font-size: .5em">
+                    <%= icon("thumbs-o-up", "#{comment.likes.count > 2 ? 'Likes ' + comment.likes.count.to_s : 'Like' }") %>
+                  </button>
+                </div>
+              </div>
+          <% end %>
+          <p style="font-size: .5em">
+            <%= time_ago_in_words(comment.created_at) %> ago
+          </p>
+        </div>
+      </div>
+
+      <% if current_user.comments.include?(comment) %>
+        <%= form_tag comment_path(comment), class: "form-delete-comment", method: :delete, remote: true do %>
+        <%= image_submit_tag("X.png", class: "comment-destroy") %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_tag toggle_like_path, method: :post, remote: true do %>
-  <%= hidden_field_tag :comment_id, comment.id %>
-    <div class="field">
-      <div class="control">
-        <button class="js-like-button-<%= comment.id %> button is-white <%= 'is-liked' if current_user.liking?(comment) %>" style="font-size: .5em">
-          <%= icon("thumbs-o-up", "Like") %>
-        </button>
-      </div>
-    </div>
-  <% end %>
+  </div>
 </div>

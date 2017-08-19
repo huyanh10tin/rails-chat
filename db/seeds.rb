@@ -48,7 +48,7 @@ users.each do |f|
 end
 
 users.each do |user|
-  puts "Generating posts"
+  puts "Generating posts for user"
   # Number of posts per user
   Random.rand(1..5).times do
     post = Post.create(user_id: user, body: (Faker::Lorem.paragraph(3, true, 30)))
@@ -57,17 +57,29 @@ users.each do |user|
 
     # Number of comments per post
     Random.rand(1..10).times do |f|
-      puts "Generating comments"
+      puts "Generating comments for post"
       person = Random.rand(1..50)
-      post.comments.build(user_id: person, body: Faker::Lorem.paragraph(1, true, 3))
+      comment = post.comments.build(user_id: person, body: Faker::Lorem.paragraph(1, true, 3))
+      comment.save
+      random_boolean = [true, false , false].sample
+
+      if random_boolean
+        Random.rand(3..15).times do
+          puts "Generating likes for comments"
+          like = comment.likes.build(user_id: Random.rand(2..49))
+          like.save
+        end
+      end
     end
 
-    post.save
+
     # Number of likes per post
     Random.rand(1..30).times do |f|
-      puts "Generating likes"
+      puts "Generating likes for post"
       person = Random.rand(1..50)
       post.likes.build(user_id: person).save
     end
+
+    post.save
   end
 end

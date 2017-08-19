@@ -38,11 +38,10 @@ i.fa {
 .post {
   margin-bottom: 15px;
 }
-
-.ellipsis {
-  text-overflow: ellipsis;
-
-  /* Required for text-overflow to do anything */
-  white-space: nowrap;
-  overflow: hidden;
+.profile-name {
+  z-index: 1;
+  padding-bottom: 10px;
+}
+h1.name {
+  color: white;
 }

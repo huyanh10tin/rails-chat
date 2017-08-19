@@ -20,10 +20,10 @@ class Post < ApplicationRecord
       get_link(person) + "&nbsp likes this post"
     elsif likes.count == 2
       users = likes.map {|e| e.user}
-      get_link(users[0]) + "&nbsp & &nbsp" + get_link(users[1]) + "&nbsp like this post."
+      get_link(users.first) + "&nbsp & &nbsp" + get_link(users.second) + "&nbsp like this post."
     elsif likes.count >= 3
       users = likes.map {|e| e.user}
-      get_link(users[0]) + ", &nbsp" + get_link(users[1]) + ", &nbsp" + get_link(users[3]) + "&nbsp & &nbsp" + (likes.count - 3).to_s + "&nbsp others like this post"
+      get_link(users.first) + ", &nbsp" + get_link(users.second) + ", &nbsp" + get_link(users.third) + "&nbsp & &nbsp" + (likes.count - 3).to_s + "&nbsp others like this post"
     end
   end
 
@@ -37,6 +37,10 @@ class Post < ApplicationRecord
 
   def has_no_comments?
     comments.count == 0 ? 'hidden-comment' : ''
+  end
+
+  def belongs_to?(user)
+    user_id == user.id
   end
 
   self.per_page = 5
