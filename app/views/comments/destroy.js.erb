@@ -1,2 +1,9 @@
-$("#comment_<%= @comment.id %>").remove();
-$(".comment-button-<%= @comment.post.id %>").html("<i class='fa fa-comment'></i><%= @comment.post.comments_count %>")
+<% if @comment.parent %>
+  console.log("<%= @parent.id %>")
+  console.log("<%= @comment.parent.children.count %>")
+  $("#comment_<%= @comment.id %>").remove();
+  $("#comments_<%= @parent %>").html("<%= @comment.parent.children.count %> Replies")
+<% else %>
+  $("#comment_<%= @comment.id %>").remove();
+  $(".comment-button-<%= @comment.post.id %>").html("<i class='fa fa-comment'></i><%= @comment.post.comments_count %>")
+<% end %>

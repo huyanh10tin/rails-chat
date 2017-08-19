@@ -29,11 +29,12 @@
 .form-delete-comment {
   display: inline;
 }
+
 .comment-likes{
   display: flex;
   flex-direction: row;
   align-items: center;
   p {
-    margin-bottom: 6px;
+    margin-left: 45px
   }
 }

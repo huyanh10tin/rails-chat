@@ -36,6 +36,28 @@ $(function() {
         form.addClass("hidden").removeClass("active");
       })
     })
+    // Get reply buttons
+    buttons = $("a[id*='comments_']").toArray()
+    buttons.forEach(function(item) {
+      item.addEventListener("click", function(e) {
+        e.preventDefault();
+        $($(e.target)).parent(".comment-likes").siblings(".replies").toggleClass("hidden")
+        $($(e.target)).parent(".comment-likes").siblings(".reply-comment").toggleClass("hidden")
+        $($(e.target)).parent(".comment-likes").siblings(".reply-comment").find("input").focus()
+      })
+    })
+
+    $(window).on('scroll', function() {
+      buttons = $("a[id*='comments_']").toArray()
+      buttons.forEach(function(item) {
+        item.addEventListener("click", function(e) {
+          e.preventDefault();
+          $($(e.target)).parent(".comment-likes").siblings(".replies").toggleClass("hidden")
+          $($(e.target)).parent(".comment-likes").siblings(".reply-comment").toggleClass("hidden")
+          $($(e.target)).parent(".comment-likes").siblings(".reply-comment").find("input").focus()
+        })
+      })
+    })
 })
 
 

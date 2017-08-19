@@ -12,4 +12,7 @@ module LikesHelper
   def get_like_button_text(liked)
     liked ? "Unlike" : "Like"
   end
+  def get_like_button_classes_small(liked)
+    liked ? "thumbs-down is-small" : "thumbs-up is-small"
+  end
 end

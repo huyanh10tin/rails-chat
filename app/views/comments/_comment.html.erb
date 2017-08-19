@@ -6,22 +6,39 @@
       <div class="comment-body">
         <%= link_to "#{comment.user.name} ", profile_user_path(comment.user), style: "font-weight: bold; white-space: pre;" %>
         <%= comment.body %>
+        <%= comment.id %>
+
+        <div class="replies hidden">
+          <% comment.children.each do |reply| %>
+            <%= render 'comments/replies', {comment: reply} %>
+          <% end %>
+        </div>
 
         <div class="comment-likes">
+          <%= link_to comment.children.count >= 1 ? comment.children.count.to_s + " Replies" : "Reply" , "/", style: "font-size: .7em", id: "comments_" + comment.id.to_s %>
           <%= form_tag toggle_like_path, method: :post, remote: true do %>
             <%= hidden_field_tag :comment_id, comment.id %>
               <div class="field">
                 <div class="control">
-                  <button class="js-like-button-<%= comment.id %> button is-small is-white <%= 'is-liked' if current_user.liking?(comment) %>"
-                    style="font-size: .5em">
-                    <%= icon("thumbs-o-up", "#{comment.likes.count > 2 ? 'Likes ' + comment.likes.count.to_s : 'Like' }") %>
+                  <button class="js-like-button-<%= comment.id %> button is-white
+                    <%= 'is-liked' if current_user.liking?(comment) %>"
+                    style="font-size: .7em">
+                    <%= render partial: "comments/like_button", locals: {comment: comment, user: current_user} %>
                   </button>
                 </div>
               </div>
           <% end %>
-          <p style="font-size: .5em">
+          <p style="font-size: .7em">
             <%= time_ago_in_words(comment.created_at) %> ago
           </p>
+        </div>
+        <div class="reply-comment hidden">
+          <%= comment.id %>
+          <%= form_for Comment.create, autocomplete: "off", remote: true do |f|%>
+            <%= f.hidden_field :parent_id, value: comment.id %>
+            <%= f.hidden_field :post_id, value: comment.post.id %>
+            <%= f.text_field :body %>
+          <% end %>
         </div>
       </div>
 

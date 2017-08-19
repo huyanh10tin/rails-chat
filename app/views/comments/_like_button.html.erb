@@ -1,0 +1,8 @@
+<% liked = user.liking?(comment) %>
+<% icon_type = get_like_button_icon(liked) %>
+<% button_classes = get_like_button_classes_small(liked)%>
+<% button_text = get_like_button_text(liked) %>
+<% comment.likes.count > 2 ? button_text += "s #{comment.likes.count}" : button_text %>
+
+<%= link_to fa_icon(icon_type, text: button_text), toggle_like_path(comment_id: comment),
+    class: button_classes, method: "post", remote: true %>

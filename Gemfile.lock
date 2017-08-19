@@ -47,6 +47,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    ancestry (3.0.1)
+      activerecord (>= 3.2.0)
     arel (8.0.0)
     autoprefixer-rails (6.4.1.1)
       execjs
@@ -287,6 +289,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ancestry
   bcrypt (~> 3.1.7)
   bulma-rails!
   byebug

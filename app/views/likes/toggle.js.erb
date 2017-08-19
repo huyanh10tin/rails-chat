@@ -2,6 +2,6 @@
 $("#js-likes-<%=@like.item.id%>").html(
   "<%= j render partial: 'posts/like_button', locals: {post: @item, user: @current_user} %>")
 <% else %>
-$(".js-like-button-<%= @item.id %>").toggleClass("is-liked");
-$(".js-like-button-<%= @item.id %>").find("span:nth-of-type(2n)").html("Likes <%= @item.likes.count if @item.likes.count > 2 %>");
+$(".js-like-button-<%= @item.id %>").toggleClass("is-liked").html(
+  "<%= j render partial: 'comments/like_button', locals: {comment: @item, user: @current_user} %>")
 <% end %>

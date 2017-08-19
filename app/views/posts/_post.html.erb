@@ -14,7 +14,7 @@
         </div>
 
         <% if post.belongs_to?(current_user) %>
-          <%= form_for post_path(post), method: :delete, remote: true do |f| %>
+          <%= form_for post, url: post_path(post), html: {method: "delete"}, remote: true do |f| %>
             <%= f.hidden_field :post_id, value: post.id %>
             <%= f.submit "Delete" %>
           <% end %>
@@ -48,7 +48,7 @@
 
   <div class="card is-multiline <%= post.has_no_comments? %>">
     <div class="card-content js-comments-<%= post.id %>">
-      <%= render post.comments.order("created_at ASC") %>
+      <%= render post.comments.select {|c| c.parent == nil}.sort{|a, b| a <=> b} %>
     </div>
   </div>
 

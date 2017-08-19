@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.create(comment_params)
+    @comment = current_user.comments.create!(comment_params)
+    @parent = params[:comment][:parent_id]
     respond_to do |format|
       if @comment.save
         format.html {redirect_back(fallback_location: root_path)}
@@ -23,6 +24,6 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:user_id, :body, :post_id)
+    params.require(:comment).permit(:user_id, :body, :post_id, :parent_id)
   end
 end
