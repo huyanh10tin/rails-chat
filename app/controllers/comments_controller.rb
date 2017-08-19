@@ -16,9 +16,12 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    @parent = @comment.parent
     respond_to do |format|
       format.js
       @comment.destroy
+      @parent.save
+      @parent = @parent.id
     end
   end
 

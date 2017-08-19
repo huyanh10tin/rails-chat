@@ -6,7 +6,6 @@
       <div class="comment-body">
         <%= link_to "#{comment.user.name} ", profile_user_path(comment.user), style: "font-weight: bold; white-space: pre;" %>
         <%= comment.body %>
-        <%= comment.id %>
 
         <div class="replies hidden">
           <% comment.children.each do |reply| %>
@@ -32,12 +31,11 @@
             <%= time_ago_in_words(comment.created_at) %> ago
           </p>
         </div>
-        <div class="reply-comment hidden">
-          <%= comment.id %>
+        <div class="js-reply-comment hidden">
           <%= form_for Comment.create, autocomplete: "off", remote: true do |f|%>
             <%= f.hidden_field :parent_id, value: comment.id %>
             <%= f.hidden_field :post_id, value: comment.post.id %>
-            <%= f.text_field :body %>
+            <%= f.text_field :body, autocomplete: "off", required: true %>
           <% end %>
         </div>
       </div>
