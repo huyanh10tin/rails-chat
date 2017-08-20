@@ -12,6 +12,7 @@
       <%= form_for current_user.posts.build do |f| %>
         <%= f.hidden_field :wall_id, value: current_user.id %>
         <%= f.text_field :body, class: "input", placeholder: "I'm feeling..." %>
+        <%= f.file_field :photo %>
         <span class="icon is-small is-left">
           <i class="fa fa-pencil-square-o"></i>
         </span>
