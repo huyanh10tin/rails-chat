@@ -23,7 +23,10 @@
 
       <div class="content" style="padding-bottom: 15px;">
         <% if post.photo.url %>
-          <%= image_tag post.photo.url %>
+          <%= link_to(post.photo.url, "data-lightbox" => "test")  do  %>
+            <%= image_tag post.photo.url %>
+          <% end %>
+
         <% end %>
         <%= post.body %>
       </div>

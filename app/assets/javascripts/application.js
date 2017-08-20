@@ -2,6 +2,7 @@
 //= require rails-ujs
 //= require turbolinks
 //= require pagination
+//= require lightbox
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {

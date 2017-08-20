@@ -13,6 +13,8 @@
         <%= f.hidden_field :wall_id, value: current_user.id %>
         <%= f.text_field :body, class: "input", placeholder: "I'm feeling..." %>
         <%= f.file_field :photo %>
+        <%= f.hidden_field :photo_cache %>
+
         <span class="icon is-small is-left">
           <i class="fa fa-pencil-square-o"></i>
         </span>
