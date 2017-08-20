@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on("turbolinks:load", function() {
     $(window).on('scroll', function() {
       const more_posts_url = $('.pagination span.next a[rel="next"]').attr('href');
       if (more_posts_url && ($(window).scrollTop() > ($(document).height() - $(window).height() - 60))) {

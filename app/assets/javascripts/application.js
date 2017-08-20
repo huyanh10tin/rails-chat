@@ -4,7 +4,7 @@
 //= require pagination
 //= require_tree .
 
-$(function() {
+$(document).on("turbolinks:load", function() {
   if ($(".search")) {
     tabs = $("li.tab").toArray();
     tabs.forEach(function(item) {
@@ -35,7 +35,5 @@ $(function() {
     $($(e.target)).parent(".comment-likes").siblings(".replies").toggleClass("hidden")
     $($(e.target)).parent(".comment-likes").siblings(".js-reply-comment").toggleClass("hidden").find("input").focus();
   })
-
-
 // close document.ready
 })

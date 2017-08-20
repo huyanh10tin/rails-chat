@@ -19,8 +19,7 @@
             <%= hidden_field_tag :comment_id, comment.id %>
               <div class="field">
                 <div class="control">
-                  <button class="js-like-button-<%= comment.id %> button is-white
-                    <%= 'is-liked' if current_user.liking?(comment) %>"
+                  <button class="js-like-button-<%= comment.id %> button is-white <%= 'is-liked' if current_user.liking?(comment) %>"
                     style="font-size: .7em">
                     <%= render partial: "comments/like_button", locals: {comment: comment, user: current_user} %>
                   </button>
