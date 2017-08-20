@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
+  mount_uploader :photo, PhotoUploader
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
@@ -8,11 +9,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_many :likes, dependent: :destroy
+  has_many :photos, dependent: :destroy
 
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
 
-  has_many :photos
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive: false}

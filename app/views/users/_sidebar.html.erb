@@ -33,8 +33,12 @@
     </nav>
   </aside>
   <%= form_for(@user) do |f| %>
-    <%= f.file_field :avatar %>
-    <%= f.hidden_field :avatar_cache %>
-    <%= f.submit "Upload" %>
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %>
+  <%= f.submit "Upload" %>
   <% end %>
+<% @user.photos.each do |photo| %>
+  <%= image_tag(photo.url, size: "500x500") %>
+<% end %>
+
 </div>

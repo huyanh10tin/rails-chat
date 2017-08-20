@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
   def create
     @post = current_user.posts.build post_params
-
+    @post.save
+    @photo = Photo.create!(user_id: current_user.id, attachment_type: "Post", attachment_id: @post.id)
+    uploader = PhotoUploader.new
+    uploader.store! params[:post][:photo]
+    @photo.url = uploader.url
+    @photo.save
     if @post.save
       redirect_back fallback_location: root_path
     else
