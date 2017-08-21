@@ -43,3 +43,18 @@ i.fa {
 h1.name {
   color: white;
 }
+.file-input{
+  color: red;
+}
+
+.all-comments {
+  box-shadow: none;
+}
+
+.js-post-comment-form {
+
+  box-shadow: none;
+  .card-content {
+    padding: 0px 27px;
+  }
+}

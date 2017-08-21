@@ -30,13 +30,7 @@
             <%= time_ago_in_words(comment.created_at) %> ago
           </p>
         </div>
-        <div class="js-reply-comment hidden">
-          <%= form_for Comment.create, autocomplete: "off", remote: true do |f|%>
-            <%= f.hidden_field :parent_id, value: comment.id %>
-            <%= f.hidden_field :post_id, value: comment.post.id %>
-            <%= f.text_field :body, autocomplete: "off", required: true %>
-          <% end %>
-        </div>
+        <%= render 'comments/reply_comment', comment: comment %>
       </div>
 
       <% if current_user.comments.include?(comment) %>

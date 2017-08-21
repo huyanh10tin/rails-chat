@@ -1,14 +1,36 @@
-<div class="card js-post-comment-form hidden">
-  <%= form_for post.comments.build, remote: true do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :post_id, value: post.id %>
-    <div class="field">
-      <div class="control has-icons-left">
-        <%= f.text_field :body, class: "input comment-body", placeholder: "Comment...", autocomplete: "off", required: true %>
-        <span class="icon is-small is-left">
-          <i class="fa fa-comments"></i>
-        </span>
-        <% end %>
+<div class="card js-post-comment-form">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-32x32">
+          <%= image_tag(current_user.image_url_or_default) %>
+        </figure>
+      </div>
+      <div class="content" style="width: 100%">
+        <div class="field has-addons" style="align-items: center; padding-bottom: 10px">
+          <div class="control has-icons-left is-expanded">
+            <%= form_for post.comments.build, remote: true do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :post_id, value: post.id %>
+                  <%= f.text_field :body, class: "input comment-body", placeholder: "Comment...", autocomplete: "off", required: true %>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-comments"></i>
+                </span>
+          </div>
+          <div class="control">
+            <label class="file-label">
+            <%= f.file_field :photo, class: "file-input" %>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fa fa-camera-retro"></i>
+                </span>
+                <span class="file-label">Photo…</span>
+              </span>
+            </label>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
+  </div>
 </div>

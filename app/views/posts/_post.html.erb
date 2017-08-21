@@ -2,17 +2,7 @@
   <div class="card">
     <div class="card-content">
       <div class="media">
-        <div class="media-left js-avatar">
-          <figure class="image is-48x48">
-            <%= link_to image_tag(post.user.image_url_or_default), profile_user_path(post.user), style: "float: left" %>
-          </figure>
-        </div>
-
-        <div class="media-content">
-          <p class="title is-4"><%= link_to "#{post.user.titleize_name}: ", profile_user_path(post.user) %></p>
-          <p class="subtitle is-6" style="font-size: .8em"><%= time_ago_in_words(post.created_at) %> ago</p>
-        </div>
-
+        <%= render 'posts/post_title', post: post %>
         <% if post.belongs_to?(current_user) %>
           <%= form_for post, url: post_path(post), html: {method: "delete"}, remote: true do |f| %>
             <%= f.hidden_field :post_id, value: post.id %>
@@ -24,14 +14,15 @@
       <div class="content" style="padding-bottom: 15px;">
         <% if post.photo.url %>
           <%= link_to(post.photo.url, "data-lightbox" => "test")  do  %>
-            <%= image_tag post.photo.url %>
+            <%= image_tag post.photo.url, size: "260x180", crop: :fill%>
           <% end %>
-        <% end %>
+        <% end %> <br>
+
         <%= post.body %>
       </div>
     </div>
 
-    <div class="card-footer" id="actions">
+    <div class="card-footer" id="actions" style="justify-content: flex-start">
       <div class="level">
         <div class="level-left">
           <div id="js-likes-<%= post.id %>">
@@ -44,7 +35,7 @@
     <%= render 'posts/post_likes_people', post: post %>
   </div>
 
-  <div class="card is-multiline <%= post.has_no_comments? %>">
+  <div class="card is-multiline all-comments<%= post.has_no_comments? %>">
     <div class="card-content js-comments-<%= post.id %>">
       <%= render post.comments.select {|c| c.parent == nil}.sort{|a, b| a <=> b} %>
     </div>

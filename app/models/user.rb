@@ -102,4 +102,8 @@ class User < ApplicationRecord
   def liking?(item)
     likes.where(item: item).exists?
   end
+
+  def timeline_posts
+    Post.where("user_id = ? or wall_id = ? ", id, id).order('created_at DESC').uniq
+  end
 end

@@ -1,0 +1,18 @@
+<div class="js-reply-comment hidden">
+  <div class="media">
+    <div class="media-left">
+      <figure class="image is-32x32">
+        <%= image_tag(current_user.image_url_or_default) %>
+      </figure>
+    </div>
+    <div class="content">
+      <div class="field has-addons" style="align-items: center; padding-bottom: 10px">
+        <%= form_for Comment.create, autocomplete: "off", remote: true do |f|%>
+          <%= f.hidden_field :parent_id, value: comment.id %>
+          <%= f.hidden_field :post_id, value: comment.post.id %>
+          <%= f.text_field :body, class: "input is-expanded", autocomplete: "off", required: true %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,9 +2,11 @@
   $("#comment_<%= @parent %> form").trigger("reset");
   $("#comment_<%= @parent %>").find(".replies").append("<%= j render @comment %>");
   $("#comments_<%= @parent %>").html("<%= @comment.parent.children.count %> Replies");
+  grabButtons();
 <% else %>
   $(".js-comments-<%= @comment.post.id %>").last(".comment").append("<%= j render @comment %>");
   $("input.input").val('');
   $(".comment-button-<%= @comment.post.id %>").html("<i class='fa fa-comment'></i><%= @comment.post.comments_count %>");
   $(".js-comments-<%= @comment.post.id %>").parent(".card.is-multiline").removeClass("hidden-comment").addClass("active");
+  grabButtons();
 <% end %>

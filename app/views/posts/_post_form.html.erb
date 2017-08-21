@@ -2,22 +2,32 @@
   <div class="card-content">
     <div class="media">
       <div class="media-left">
-        <figure class="image is-48x48">
+        <figure class="image is-32x32">
           <%= image_tag(current_user.image_url_or_default) %>
         </figure>
       </div>
       <div class="content" style="width: 100%">
-        <div class="field has-addons" style="align-items: center; padding-bottom: 10px">
+        <div class="field has-addons" style="align-items: center">
           <div class="control has-icons-left is-expanded">
             <%= form_for current_user.posts.build do |f| %>
               <%= f.hidden_field :wall_id, value: params[:id] %>
-                  <%= f.text_field :body, class: "input", placeholder: "I'm feeling..." %>
-                  <%= f.file_field :photo %>
+                  <%= f.text_field :body, class: "input", placeholder: "What's on your mind #{current_user.name}?" %>
                 <span class="icon is-small is-left">
                   <i class="fa fa-pencil-square-o"></i>
                 </span>
-            <% end  %>
           </div>
+          <div class="control">
+            <label class="file-label">
+            <%= f.file_field :photo, class: "file-input" %>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fa fa-camera-retro"></i>
+                </span>
+                <span class="file-label">Photo…</span>
+              </span>
+            </label>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>

@@ -19,9 +19,7 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find(params[:id])
-    @posts = @user.posts + Post.where(wall_id: @user.id)
-    @posts.sort! { |b,a|  a.created_at <=> b.created_at }
-    @posts = @posts.uniq
+    @posts = @user.timeline_posts
   end
 
   def edit

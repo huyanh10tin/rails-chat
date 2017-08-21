@@ -19,10 +19,8 @@ $(document).on("turbolinks:load", function() {
 
   if ($(".js-profile-tabs")) {
     tabs = $("ul li").toArray();
-    console.log(tabs)
     tabs.forEach(function(item) {
       item.addEventListener("click", function(e) {
-        console.log(e)
         $(e.target).parent("li").toggleClass("is-active");
       })
     })

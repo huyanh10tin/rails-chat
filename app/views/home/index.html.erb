@@ -13,8 +13,8 @@
   <% else %>
     <div id="my-posts">
       <%= render 'posts/post_form' %>
-    </div>
       <%= render @posts %>
+    </div>
     </div>
     <div id="infinite-scrolling">
       <%= paginate @posts %>
