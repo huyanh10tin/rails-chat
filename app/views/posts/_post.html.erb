@@ -26,7 +26,6 @@
           <%= link_to(post.photo.url, "data-lightbox" => "test")  do  %>
             <%= image_tag post.photo.url %>
           <% end %>
-
         <% end %>
         <%= post.body %>
       </div>
@@ -42,14 +41,7 @@
         </div>
       </div>
     </div>
-
-    <div class="card-footer">
-      <% if post.has_likes %>
-        <div class="card-footer-item" style="font-size: .7em">
-          <%= post.likes_partial.html_safe %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'posts/post_likes_people', post: post %>
   </div>
 
   <div class="card is-multiline <%= post.has_no_comments? %>">

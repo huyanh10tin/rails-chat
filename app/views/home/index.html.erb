@@ -7,24 +7,13 @@
 </div>
 <div class="column is-10">
   <div class="field">
-    <label class="label">What's on your mind?</label>
-    <div class="control has-icons-left">
-      <%= form_for current_user.posts.build do |f| %>
-        <%= f.hidden_field :wall_id, value: current_user.id %>
-        <%= f.text_field :body, class: "input", placeholder: "I'm feeling..." %>
-        <%= f.file_field :photo %>
-        <%= f.hidden_field :photo_cache %>
 
-        <span class="icon is-small is-left">
-          <i class="fa fa-pencil-square-o"></i>
-        </span>
-      <% end  %>
-    </div>
-  </div>
   <% if params[:search] %>
     <%= render 'search' %>
   <% else %>
     <div id="my-posts">
+      <%= render 'posts/post_form' %>
+    </div>
       <%= render @posts %>
     </div>
     <div id="infinite-scrolling">

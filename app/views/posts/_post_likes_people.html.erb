@@ -1,0 +1,7 @@
+<div class="card-footer post_likes_people">
+  <% if post.has_likes %>
+    <div class="card-footer-item" >
+        <%= post.likes_partial.html_safe %>
+    </div>
+  <% end %>
+</div>

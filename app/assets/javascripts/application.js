@@ -17,24 +17,16 @@ $(document).on("turbolinks:load", function() {
     })
   }
 
-  // initial grab of comment buttons for revealing comment forms on posts
-  $("div.post").on("click", ".js-comment-button", (e) => {
-    console.log("grabbed comment buttons")
-    e.preventDefault();
-    form = $(e.target).parents(".post").children(".js-post-comment-form").removeClass("hidden").addClass("active");
-    form.find("input.input").focus();
-    input = form.find("input.input");
-    input.on("focusout", function() {
-      form.addClass("hidden").removeClass("active");
+  if ($(".js-profile-tabs")) {
+    tabs = $("ul li").toArray();
+    console.log(tabs)
+    tabs.forEach(function(item) {
+      item.addEventListener("click", function(e) {
+        console.log(e)
+        $(e.target).parent("li").toggleClass("is-active");
+      })
     })
-  })
+  }
 
-  // initial grab of reply buttons for comments
-  $("div.comment-body").on("click", "a[id*='js-reply-comment']", (e) => {
-    console.log("grabbed reply buttons")
-    e.preventDefault()
-    $($(e.target)).parent(".comment-likes").siblings(".replies").toggleClass("hidden")
-    $($(e.target)).parent(".comment-likes").siblings(".js-reply-comment").toggleClass("hidden").find("input").focus();
-  })
 // close document.ready
 })

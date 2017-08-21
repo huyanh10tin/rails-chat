@@ -1,5 +1,4 @@
-<h1 class="search">Search</h1>
-<div class="tabs is-toggle">
+<div class="tabs is-toggle is-centered is-large">
   <ul>
     <li class="tab" data-panel="users">
       <a>
@@ -10,7 +9,7 @@
     <li class="tab" data-panel="posts">
       <a>
         <span class="icon is-small"><i class="fa fa-newspaper-o"></i></span>
-        <span>Posts <%= "#{@posts.count}" if @users.count > 1 %></span>
+        <span>Posts <%= "#{@posts.count}" if @posts.count > 1 %></span>
       </a>
     </li>
     <li class="tab" data-panel="videos">

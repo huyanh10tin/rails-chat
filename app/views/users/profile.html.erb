@@ -11,8 +11,17 @@
           <h1 class="title name"><%= @user.name %></h1>
         </div>
       </section>
-      <div class="body">
+      <div class="body js-profile-tabs">
         <div class="column is-10 is-offset-1">
+          <div class="tabs is-large">
+            <ul>
+              <li class="is-active" data-panel="js-timeline"><a>Timeline</a></li>
+              <li class="" data-panel="js-about"><a>About</a></li>
+              <li class="" data-panel="js-friends"><a>Friends</a></li>
+              <li class="" data-panel="js-photos"><a>Photos</a></li>
+              <li class="" data-panel="js-more"><a>More</a></li>
+            </ul>
+          </div>
           <%= render 'posts/post_form' %>
           <%= render @posts %>
         </div>

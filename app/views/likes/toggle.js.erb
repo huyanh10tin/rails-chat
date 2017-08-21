@@ -1,7 +1,12 @@
 <% if @item.class == Post %>
-$("#js-likes-<%=@like.item.id%>").html(
-  "<%= j render partial: 'posts/like_button', locals: {post: @item, user: @current_user} %>")
+  $("#js-likes-<%=@like.item.id%>").html(
+    "<%= j render partial: 'posts/like_button', locals: {post: @item, user: @current_user} %>");
+
+  $("#<%= dom_id @item %>").find(".post_likes_people").replaceWith("<%= j render 'posts/post_likes_people', post: @item %>");
+
 <% else %>
-$(".js-like-button-<%= @item.id %>").toggleClass("is-liked").html(
-  "<%= j render partial: 'comments/like_button', locals: {comment: @item, user: @current_user} %>")
+
+  $(".js-like-button-<%= @item.id %>").toggleClass("is-liked").html(
+    "<%= j render partial: 'comments/like_button', locals: {comment: @item, user: @current_user} %>");
+    
 <% end %>
