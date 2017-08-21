@@ -1,11 +1,16 @@
 <div class="comment" id="comment_<%= comment.id %>">
-  <div class="columns">
+  <div class="columns" style="width: 100%">
     <% if current_user %>
       <%= image_tag(comment.user.image_url_or_default, size: "32x32", style: "margin-right: 10px") %>
 
-      <div class="comment-body">
+      <div class="comment-body" style="width:100%">
         <%= link_to "#{comment.user.name} ", profile_user_path(comment.user), style: "font-weight: bold; white-space: pre;" %>
         <%= comment.body %>
+          <% if comment.photo.url %>
+            <%= link_to(comment.photo.url, "data-lightbox" => "test")  do  %>
+            <%= image_tag comment.photo.url, style: 'height:auto;width:auto;' %>
+            <% end %>
+          <% end %> <br>
 
         <div class="replies hidden">
           <% comment.children.each do |reply| %>

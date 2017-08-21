@@ -9,7 +9,7 @@
       <div class="content" style="width: 100%">
         <div class="field has-addons" style="align-items: center; padding-bottom: 10px">
           <div class="control has-icons-left is-expanded">
-            <%= form_for post.comments.build, remote: true do |f| %>
+            <%= form_for post.comments.build do |f| %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :post_id, value: post.id %>
                   <%= f.text_field :body, class: "input comment-body", placeholder: "Comment...", autocomplete: "off", required: true %>

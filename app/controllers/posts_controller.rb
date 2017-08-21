@@ -9,7 +9,7 @@ class PostsController < ApplicationController
       @photo.url = uploader.url
       @photo.save
     end
-    
+
     if @post.save
       redirect_back fallback_location: root_path
     else

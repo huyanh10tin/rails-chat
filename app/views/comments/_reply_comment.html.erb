@@ -5,12 +5,12 @@
         <%= image_tag(current_user.image_url_or_default) %>
       </figure>
     </div>
-    <div class="content">
-      <div class="field has-addons" style="align-items: center; padding-bottom: 10px">
+    <div class="content" style="width:100%">
+      <div class="field has-addons" style="align-items: center; padding-bottom: 10px; width:100%">
         <%= form_for Comment.create, autocomplete: "off", remote: true do |f|%>
           <%= f.hidden_field :parent_id, value: comment.id %>
           <%= f.hidden_field :post_id, value: comment.post.id %>
-          <%= f.text_field :body, class: "input is-expanded", autocomplete: "off", required: true %>
+          <%= f.text_field :body, class: "input reply-form", autocomplete: "off", required: true, style: "width: 100%" %>
         <% end %>
       </div>
     </div>

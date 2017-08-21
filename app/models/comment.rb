@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
   belongs_to :user
   belongs_to :post
   has_many :photos, as: :attachment, dependent: :destroy

@@ -11,9 +11,10 @@ function grabButtons() {
     e.preventDefault();
 
     $parent = $(e.target).parents("div.comment")
-    console.log(e.target)
-    console.log($(e.target))
-    $parent.find(".js-reply-comment").last().toggleClass("hidden").find("input").focus();
+    $parent.find(".js-reply-comment").last().toggleClass("hidden").find("input").focus().on("focusout", function(){
+      console.log("test")
+    })
+
     $parent.find("div.replies").toggleClass("hidden");
   })
 }

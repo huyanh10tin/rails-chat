@@ -36,7 +36,7 @@
   </div>
 
   <div class="card is-multiline all-comments<%= post.has_no_comments? %>">
-    <div class="card-content js-comments-<%= post.id %>">
+    <div class="card-content js-comments-<%= post.id %>" style="padding-bottom: 5px">
       <%= render post.comments.select {|c| c.parent == nil}.sort{|a, b| a <=> b} %>
     </div>
   </div>
