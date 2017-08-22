@@ -19,7 +19,8 @@
         </div>
 
         <div class="comment-likes">
-          <%= link_to comment.children.count >= 1 ? comment.children.count.to_s + " Replies" : "Reply" , "/", style: "font-size: .7em", id: "js-reply-comment-" + comment.id.to_s %>
+          <%= link_to comment.children.count >= 1 ? comment.children.count.to_s + " Replies" : "Reply", "#", style: "font-size: .7em", id: "js-reply-comment-" + comment.id.to_s %>
+          <!-- <%= button_tag (comment.children.count >= 1 ? comment.children.count.to_s + " Replies" : "Reply"), type: "button", data: {id: "js-reply-comment-" + comment.id.to_s, style: "font-size: .7em"} %> -->
           <%= form_tag toggle_like_path, method: :post, remote: true do %>
             <%= hidden_field_tag :comment_id, comment.id %>
               <div class="field">
