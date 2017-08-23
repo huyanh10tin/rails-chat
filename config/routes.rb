@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     member do
       get 'profile'
     end
+    collection do
+      get :search
+    end
   end
 
   resources :messages do

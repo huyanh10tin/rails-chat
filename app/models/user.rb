@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
 
 
+  has_many :mentions, dependent: :destroy
+
   validates :name, presence: true
   validates :email, presence: true, uniqueness: {case_sensitive: false}
 
@@ -24,8 +26,12 @@ class User < ApplicationRecord
     name.titleize if name
   end
 
+  def self.autocomplete_by_name(letters)
+    where("name ILIKE ?", "%#{letters}%")
+  end
+
   def self.search(search)
-    where("name LIKE ?", "%#{search}%")
+    User.where("name ILIKE ? ", "%#{search}%")
   end
 
   def self.from_omniauth(auth)

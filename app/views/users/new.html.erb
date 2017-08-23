@@ -6,6 +6,7 @@
       </div>
       <div class="card-content">
         <%= form_for @user do |f| %>
+        <%= f.hidden_field :monster, value: "likes food" %>
           <div class="field">
             <%= f.text_field :name, placeholder: "Name...", class: "input" %>
           </div>
@@ -14,6 +15,7 @@
           </div>
           <div class="field">
             <%= f.password_field :password, placeholder: "Password...", class: "input" %>
+
           </div>
           <div class="field">
             <%= f.submit "Register", class: "button is-primary" %>

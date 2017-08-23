@@ -3,6 +3,7 @@
 //= require turbolinks
 //= require pagination
 //= require lightbox
+//= require js/jquery.easy-autocomplete
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
@@ -25,6 +26,11 @@ $(document).on("turbolinks:load", function() {
       })
     })
   }
-
-// close document.ready
+  var options = {
+    url: function(name) {
+      return "/users/search?q=" + name + "&format=json"
+    },
+    getValue: "name"
+  };
+	$("#provider-remote").easyAutocomplete(options);
 })

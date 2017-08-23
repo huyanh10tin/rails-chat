@@ -13,7 +13,4 @@ RSpec.describe User, type: :model do
         expect(loi.image_url_or_default).to eq "http://lorempixel.com/128/128/sports/Fake-User/"
       end
     end
-
-
-
 end

@@ -1,0 +1,25 @@
+<div class="post" id="<%= dom_id post %>">
+  <div class="card">
+    <div class="card-content">
+      <div class="media">
+        <%= render 'posts/post_title', post: post %>
+        <% if post.belongs_to?(current_user) %>
+          <%= form_for post, url: post_path(post), html: {method: "delete"}, remote: true do |f| %>
+            <%= f.hidden_field :post_id, value: post.id %>
+            <%= f.submit "Delete" %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="content" style="padding-bottom: 15px;">
+        <% if post.photo.url %>
+          <%= link_to(post.photo.url, "data-lightbox" => "test")  do  %>
+            <%= image_tag post.photo.url, size: "260x180", crop: :fill%>
+          <% end %>
+        <% end %> <br>
+
+        <%= post.body %>
+      </div>
+    </div>
+  </div>
+</div>

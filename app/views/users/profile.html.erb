@@ -1,8 +1,9 @@
 <div class="wall">
-
   <div class="coverphoto">
   </div>
-
+<%= form_for(@user) do |f| %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+<% end %>
   <div class="columns">
     <%= render 'sidebar' %>
     <div class="column is-9 profile-column" style="margin-top: -100px">

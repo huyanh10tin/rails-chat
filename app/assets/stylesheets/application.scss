@@ -4,12 +4,13 @@
 @import "animate";
 @import "lightbox";
 @import "hover";
+@import "css/easy-autocomplete";
+@import "css/easy-autocomplete.themes";
 @import "home";
 @import "users";
 @import "friends";
 @import "comments";
 @import "posts";
-
 
 [class*="fa-options_"] {
   color: red;

@@ -5,6 +5,14 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def search
+    @users = User.autocomplete_by_name(params[:q])
+
+    respond_to do |format|
+      format.json
+    end
+  end
+
   def create
     @user = User.new user_params
     if @user.save
@@ -13,6 +21,7 @@ class UsersController < ApplicationController
       UserMailer.welcome_email(@user).deliver_now
       redirect_to root_path
     else
+      flash[:success] = "Could not create."
       render 'new'
     end
   end

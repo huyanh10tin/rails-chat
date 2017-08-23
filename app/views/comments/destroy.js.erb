@@ -2,10 +2,7 @@
   $("#comments_<%= @parent %>").html("<%= @comment.parent.children.count %> Replies")
   console.log("@comment.id")
   $("#comment_<%= @comment.id %>").remove();
-
-
 <% else %>
   $("#comment_<%= @comment.id %>").remove();
   $(".comment-button-<%= @comment.post.id %>").html("<i class='fa fa-comment'></i><%= @comment.post.comments_count %>")
-
 <% end %>

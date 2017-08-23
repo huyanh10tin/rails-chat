@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, as: :item, dependent: :destroy
   has_many :photos, as: :attachment, dependent: :destroy
+  has_many :mentions, dependent: :destroy
+
   paginates_per 5
 
   def self.search(search)

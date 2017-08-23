@@ -6,8 +6,10 @@
 <div class="media-content">
   <% if params[:id].to_i == current_user.id || params[:id].to_i == post.user_id || params[:action] == "index" %>
     <p class="title is-4"><%= link_to "#{post.user.titleize_name} ", profile_user_path(post.user) %></p>
+    <%= mentions_text(post) %>
   <% else %>
     <p class="title is-4"><%= link_to "#{post.user.titleize_name} ", profile_user_path(post.user) %> wrote on <%= link_to User.find(params[:id]).name %>'s wall</p>
+    <%= mentions_text(post) %>
   <% end %>
     <p class="subtitle is-6" style="font-size: .8em"><%= time_ago_in_words(post.created_at) %> ago</p>
 </div>

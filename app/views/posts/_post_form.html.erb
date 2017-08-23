@@ -11,7 +11,7 @@
           <div class="control has-icons-left is-expanded">
             <%= form_for current_user.posts.build do |f| %>
               <%= f.hidden_field :wall_id, value: params[:id] %>
-                  <%= f.text_field :body, class: "input", placeholder: "What's on your mind #{current_user.name}?" %>
+              <%= f.text_field :body, class: "input", placeholder: "What's on your mind #{current_user.name}?", id: "provider-remote" %>
                 <span class="icon is-small is-left">
                   <i class="fa fa-pencil-square-o"></i>
                 </span>

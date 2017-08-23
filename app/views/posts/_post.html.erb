@@ -13,11 +13,10 @@
 
       <div class="content" style="padding-bottom: 15px;">
         <% if post.photo.url %>
-          <%= link_to(post.photo.url, "data-lightbox" => "test")  do  %>
-            <%= image_tag post.photo.url, size: "260x180", crop: :fill%>
+          <%= link_to(post.photo.url, "data-lightbox" => "test") do %>
+            <%= image_tag post.photo.url, size: "260x180", crop: :fill %>
           <% end %>
         <% end %> <br>
-
         <%= post.body %>
       </div>
     </div>
