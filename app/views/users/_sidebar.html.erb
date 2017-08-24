@@ -10,25 +10,25 @@
           <span class="panel-icon">
             <i class="fa fa-info"></i>
           </span>
-          <%= @user.quote %>
+          <%= @user.quote if @user.quote %>
         </a>
         <a class="panel-block">
           <span class="panel-icon">
             <i class="fa fa-briefcase"></i>
           </span>
-          <%= @user.position %>
+          <%= @user.position if @user.position %>
         </a>
         <a class="panel-block">
           <span class="panel-icon">
             <i class="fa fa-book"></i>
           </span>
-          <%= @user.school %>
+          <%= @user.school if @user.position %>
         </a>
         <a class="panel-block">
           <span class="panel-icon">
             <i class="fa fa-map-o"></i>
           </span>
-          <%= @user.city + ", " + @user.state %>
+          <%= @user.city + ", " + @user.state if @user.city && @user.state %>
         </a>
     </nav>
   </aside>

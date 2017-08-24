@@ -12,22 +12,21 @@
             <%= form_for post.comments.build do |f| %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :post_id, value: post.id %>
-                  <%= f.text_field :body, class: "input comment-body", placeholder: "Comment...", autocomplete: "off", required: true %>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-comments"></i>
-                </span>
-          </div>
-          <div class="control">
-            <label class="file-label">
-
-            <%= f.file_field :photo, class: "file-input" %>
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="fa fa-camera-retro"></i>
-                </span>
-                <span class="file-label">Photo…</span>
+            <%= f.text_field :body, class: "input comment-body", placeholder: "Comment...", autocomplete: "off", required: true %>
+              <span class="icon is-small is-left">
+                <i class="fa fa-comments"></i>
               </span>
-            </label>
+            <div class="control">
+              <label class="file-label">
+              <%= f.file_field :photo, class: "file-input" %>
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fa fa-camera-retro"></i>
+                  </span>
+                  <span class="file-label">Photo…</span>
+                </span>
+              </label>
+            </div>
           </div>
           <% end %>
         </div>

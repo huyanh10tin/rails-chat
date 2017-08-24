@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      flash[:success] = "User created."
+      flash[:success] = "Welcome to Railsbook #{@user.name}"
       login(@user)
       UserMailer.welcome_email(@user).deliver_now
       redirect_to root_path
