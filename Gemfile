@@ -68,5 +68,4 @@ gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
 gem 'ancestry'
 gem "mini_magick"
-gem 'execjs'
-gem 'therubyracer', :platforms => :ruby
+gem 'therubyracer',  platforms: :ruby
