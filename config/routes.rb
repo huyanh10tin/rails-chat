@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'conversations/index'
+
   post "toggle_like" => "likes#toggle"
 
   post 'search' => "home#index"
@@ -7,6 +9,8 @@ Rails.application.routes.draw do
   get 'sent_requests' => "friendships#sent_requests"
   get "friends" => "friends#index"
   delete "remove_friend" => "friendships#destroy"
+
+  get 'test' => 'conversation#index'
 
   resources :friendships
   resources :posts

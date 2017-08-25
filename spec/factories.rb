@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :user_conversation do
+    user nil
+    conversation nil
+  end
+  factory :conversation do
+    
+  end
   factory :user do
     sequence(:name) {|n| "John#{n}"}
     sequence(:email) {|n| "#{n}user@gmail.com"}
