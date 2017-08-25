@@ -17,18 +17,18 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = current_user.sent_messages.build message_params
+    @message = current_user.messages.build message_params
 
     if @message.save
-      redirect_to sent_messages_path
+      redirect_back fallback_location: root_path
     else
-      flash.now[:error] = "Error: #{@message.errors.full_messages.to_sentence}"
-      render 'new'
+      flash[:error] = "Error: #{@message.errors.full_messages.to_sentence}"
+      redirect_back fallback_location: root_path
     end
   end
 
   private
   def message_params
-    params.require(:message).permit(:sender_id, :recipient_id, :body)
+    params.require(:message).permit(:body, :conversation_id)
   end
 end

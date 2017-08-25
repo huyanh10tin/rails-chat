@@ -71,9 +71,7 @@
       </nav>
     </div>
     <%= flash_messages %>
-    <div class="container">
       <%= content_for?(:content) ? yield(:content) : yield %>
-    </div>
   </body>
 </html>
 <div>

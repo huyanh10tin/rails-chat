@@ -1,0 +1,21 @@
+<%= content_for :content do %>
+<div class="columns conversations-main">
+  <div class="column is-one-quarter" style="border: 1px solid red">
+    <aside class="menu">
+      <p class="menu-label">Messages</p>
+      <ul class="menu-list">
+        <% current_user.conversations.each do |conversation| %>
+          <li><%= conversation.other_users_name(current_user) %>
+            <p class="truncate"><%= conversation.messages.last.body %></p>
+          </li>
+        <% end %>
+      </ul>
+    </aside>
+  </div>
+
+  <div class="column" style="border: 1px solid pink">
+    <%= yield %>
+  </div>
+</div>
+  <% end %>
+<%= render file: "layouts/application" %>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "friends" => "friends#index"
   delete "remove_friend" => "friendships#destroy"
 
-  get 'test' => 'conversation#index'
+  get 'test' => 'conversations#index'
 
   resources :friendships
   resources :posts

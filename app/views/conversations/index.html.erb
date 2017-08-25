@@ -1,2 +1,17 @@
-<h1>Conversations#index</h1>
-<p>Find me in app/views/conversations/index.html.erb</p>
+<% @user.conversations.each do |conversation| %>
+  <div class="conversation-body" id="<%= dom_id conversation %>">
+    <% conversation.other_users_name(current_user).each do |user| %>
+        <%= user %>
+      <% end %>
+
+      <% conversation.messages.each do |message| %>
+        <p><%= message.body %></p>
+      <% end %>
+
+
+    <%= form_for Message.new do |f| %>
+      <%= f.hidden_field :conversation_id, value: conversation.id %>
+      <%= f.text_field :body %>
+    <% end %>
+  </div>
+<% end %>
