@@ -1,7 +1,7 @@
 <div class="conversation" data-id="<%= conversation.id %>">
-  <li class="list-conversation js-list-conversation">
+  <div class="conversation-list-item">
     <%= conversation.other_users_name(current_user) %>
     <p class="truncate"><%= conversation.messages.last.body %></p>
     <%= time_ago_in_words(conversation.created_at) %>
-  </li>
+  </div>
 </div>

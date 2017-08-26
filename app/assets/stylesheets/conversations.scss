@@ -8,23 +8,40 @@
   height: 93vh;
   padding: 5px;
 
-  .conversations-aside{
-    background-color: pink;
+  .conversations-aside {
     overflow: auto;
+    padding-right: 0px;
+    .conversation:hover {
+      background-color: $grey-lighter;
+    }
+
+    .conversation-list-item {
+      border-bottom: 1px solid #d3d3d3;
+    }
   }
-}
-.conversations {
-  .conversation-form {
-    position: absolute;
-    bottom: 0;
+
+  .conversations {
+    .conversation {
+      height: 90vh;
+      overflow-wrap: normal;
+      overflow-y: auto;
+
+      .messages {
+        overflow: hidden;
+
+        .avatar {
+          border-radius: 50%;
+        }
+      }
+    }
+    .conversation-form {
+      position: absolute;
+      bottom: 0;
+    }
   }
 }
 
-.conversation-body {
-  height: 90vh;
-  overflow-wrap: normal;
-  overflow-y: scroll;
-}
+
 
 .truncate {
   width: 100%;
@@ -33,12 +50,10 @@
   text-overflow: ellipsis;
 }
 
-.list-conversation {
-  border: 1px solid grey;
-}
 .card.message {
   margin-bottom: 0px;
   box-shadow: none;
+  background-color: white;
 
   >.card-content {
     padding: 10px 0px;

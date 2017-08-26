@@ -2,7 +2,7 @@
 <div class="columns conversations-main" style="overflow: hidden;">
 
   <div class="column is-one-quarter conversations-aside">
-    <div id="my-conversations" class="conversations-list">
+    <div id="my-conversations">
       <%= render @conversations %>
     </div>
 
@@ -11,7 +11,7 @@
     </div>
 
   </div>
-  <div class="column" style="border: 1px solid pink">
+  <div class="column" style="padding-left: 0px; border-left: 1px solid #d3d3d3;">
     <%= yield %>
   </div>
 </div>

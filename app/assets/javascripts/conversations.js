@@ -2,6 +2,8 @@
 // All this logic will automatically be available in application.js.
 
 $(document).on("turbolinks:load", function() {
+
+  // pagination for list-conversations
   $('.conversations-aside').on('scroll', function() {
 
       if($(this).scrollTop() + $(this).innerHeight() + 60 >= $(this)[0].scrollHeight) {
@@ -20,16 +22,21 @@ $(document).on("turbolinks:load", function() {
       }
   });
 
-  $("div.conversation-body").first().toggleClass("hidden")
 
-  $(".conversations-list").on("click", "div.conversation", (e) => {
-    conversationNumber = $(e.target).parents(".conversation").attr("data-id")
-    console.log(conversationNumber)
-    $("div.conversation-body:not(.hidden)").toggleClass("hidden")
-    $("#conversation_" + conversationNumber).toggleClass("hidden")
+  // initial settings
+  $("div.conversation-body").first().toggleClass("hidden");
 
-    console.log($("form.new_message").find("input#message_conversation_id").val(conversationNumber))
 
-    $("form.new_message").find("input#message_conversation_id").val(conversationNumber)
+  // update main conversation area
+  $("#my-conversations").on("click", "div.conversation", (e) => {
+    conversationNumber = $(e.target).parents(".conversation").attr("data-id");
+
+    element = document.getElementById("conversation_" + conversationNumber);
+    $(element).scrollTop($(element)[0].scrollHeight);
+
+
+    $("div.conversation-body:not(.hidden)").toggleClass("hidden");
+    $("#conversation_" + conversationNumber).toggleClass("hidden");
+    $("form.new_message").find("input#message_conversation_id").val(conversationNumber);
   })
 })

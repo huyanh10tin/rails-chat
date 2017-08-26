@@ -1,5 +1,8 @@
-$('#my-conversations').append('<%= j render @conversations %>');
-$('.conversation-body').last().after('<%= j render "conversation_body", conversations: @conversations %>');
+<% @conversations.each do |conversation| %>
+  $('#my-conversations').append('<%= j render "conversation", conversation: conversation %>');
+  $('.conversation').last().after('<%= j render "conversation_body", conversation: conversation %>');
+<% end %>
+
 <% if @conversations.next_page %>
   $('.pagination').replaceWith('<%= j paginate @conversations %>');
 <% else %>
