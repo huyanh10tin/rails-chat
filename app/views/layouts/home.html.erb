@@ -1,11 +1,11 @@
 <%= content_for :content do %>
+<div class="container">
   <div class="columns" style="margin-top: 15px">
     <div class="column is-2">
       <aside class="menu">
         <p class="menu-label"><%= link_to image_tag(current_user.image_url_or_default, size: "100x100"), profile_user_path(current_user) %></p>
         <ul class="menu-list">
-          <li><%= link_to "Messages (#{current_user.received_messages.count})", inbox_messages_path, class: "navbar-item" %></li>
-          <%= link_to "Friends (#{current_user.friends.count})", friends_path, class: "navbar-item" %>
+          <li>Test</li>
         </ul>
       </aside>
 
@@ -14,6 +14,7 @@
       <%= yield %>
     </div>
   </div>
+</div>  
 <% end %>
 
 <%= render file: "layouts/application" %>

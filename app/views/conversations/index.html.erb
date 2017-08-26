@@ -1,17 +1,11 @@
-<% @user.conversations.each do |conversation| %>
-  <div class="conversation-body" id="<%= dom_id conversation %>">
-    <% conversation.other_users_name(current_user).each do |user| %>
-        <%= user %>
-      <% end %>
-
-      <% conversation.messages.each do |message| %>
-        <p><%= message.body %></p>
-      <% end %>
-
-
+<div class="conversations">
+  <% @conversations.each do |conversation| %>
+    <%= render 'conversation_body', conversation: conversation %>
+  <% end %>
+  <div class="form-for-message">
     <%= form_for Message.new do |f| %>
-      <%= f.hidden_field :conversation_id, value: conversation.id %>
-      <%= f.text_field :body %>
+      <%= f.hidden_field :conversation_id, value: @conversations.first.id %>
+      <%= f.text_field :body, class: "input conversation-form" %>
     <% end %>
   </div>
-<% end %>
+</div>

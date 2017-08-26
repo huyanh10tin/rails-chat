@@ -4,6 +4,7 @@
 //= require pagination
 //= require lightbox
 //= require js/jquery.easy-autocomplete
+//= require init
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {

@@ -1,18 +1,16 @@
 <%= content_for :content do %>
-<div class="columns conversations-main">
-  <div class="column is-one-quarter" style="border: 1px solid red">
-    <aside class="menu">
-      <p class="menu-label">Messages</p>
-      <ul class="menu-list">
-        <% current_user.conversations.each do |conversation| %>
-          <li><%= conversation.other_users_name(current_user) %>
-            <p class="truncate"><%= conversation.messages.last.body %></p>
-          </li>
-        <% end %>
-      </ul>
-    </aside>
-  </div>
+<div class="columns conversations-main" style="overflow: hidden;">
 
+  <div class="column is-one-quarter conversations-aside">
+    <div id="my-conversations" class="conversations-list">
+      <%= render @conversations %>
+    </div>
+
+    <div id="infinite-scrolling">
+      <%= paginate @conversations %>
+    </div>
+
+  </div>
   <div class="column" style="border: 1px solid pink">
     <%= yield %>
   </div>

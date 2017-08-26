@@ -1,23 +1,25 @@
-<div class="content">
-  <% unless current_user %>
-    <h2>Please Sign In</h2>
-    <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
-    <%= link_to icon("facebook", "Log in with Facebook"), "/auth/facebook", class: "button is-info" %>
-  <% end %>
-</div>
-<div class="column is-10">
-  <div class="field">
+<div class="container">
+  <div class="content">
+    <% unless current_user %>
+      <h2>Please Sign In</h2>
+      <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
+      <%= link_to icon("facebook", "Log in with Facebook"), "/auth/facebook", class: "button is-info" %>
+    <% end %>
+  </div>
+  <div class="column is-10">
+    <div class="field">
 
-  <% if params[:search] %>
-    <%= render 'search' %>
-  <% else %>
-    <div id="my-posts">
-      <%= render 'posts/post_form' %>
-      <%= render @posts %>
-    </div>
-    </div>
-    <div id="infinite-scrolling">
-      <%= paginate @posts %>
-    </div>
-  <% end %>
+    <% if params[:search] %>
+      <%= render 'search' %>
+    <% else %>
+      <div id="my-posts">
+        <%= render 'posts/post_form' %>
+        <%= render @posts %>
+      </div>
+      </div>
+      <div id="infinite-scrolling">
+        <%= paginate @posts %>
+      </div>
+    <% end %>
+  </div>
 </div>

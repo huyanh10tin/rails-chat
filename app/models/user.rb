@@ -116,4 +116,8 @@ class User < ApplicationRecord
   def timeline_posts
     Post.where("user_id = ? or wall_id = ? ", id, id).order('created_at DESC').uniq
   end
+
+  def sorted_conversations
+    conversations.joins(:messages).order('messages.created_at DESC').uniq
+  end
 end

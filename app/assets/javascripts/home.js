@@ -1,4 +1,21 @@
 $(document).on('turbolinks:load', () => {
+  // grab comment buttons
+  $("#my-posts").on("click", ".js-comment-button", (e) => {
+    e.preventDefault();
+
+    $(e.target).parents("[id*=post_]").find("input.input").focus();
+  })
+
+  // grab reply buttons
+  $("#my-posts").on("click", "a[id*='js-reply-comment']", (e) => {
+    e.preventDefault();
+
+    $parent = $(e.target).parents("div.comment")
+    $parent.find(".js-reply-comment").last().toggleClass("hidden").find("input").focus().on("focusout", function(){
+    })
+
+    $parent.find("div.replies").toggleClass("hidden");
+  })
   $('.message button.delete').on('click', event => {
     $(event.target).parents('.message').fadeOut();
   });

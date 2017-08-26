@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :friendships
   resources :posts
   resources :comments
+  resources :conversations
 
   resources :users do
     member do

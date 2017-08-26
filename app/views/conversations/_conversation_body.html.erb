@@ -1,0 +1,37 @@
+<div class="conversations">
+    <div class="conversation-body hidden" id="<%= dom_id conversation %>">
+      <% conversation.other_users_name(current_user).each do |user| %>
+          <%= user %>
+          <%= conversation.id  %>
+        <% end %>
+
+        <div class="messages">
+          <% conversation.messages.each do |message| %>
+            <% if message.user_id == current_user.id %>
+              <div class="card message">
+                <div class="card-content" style="display:flex ; justify-content: flex-end">
+                  <div class="media">
+                    <p class="subtitle"><%= message.body %></p>
+                    <figure class="image is-48x48">
+                      <%= image_tag(User.find(message.user_id).image_url_or_default) %>
+                    </figure>
+
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <div class="card message">
+                <div class="card-content">
+                  <div class="media">
+                    <figure class="image is-48x48">
+                      <%= image_tag(User.find(message.user_id).image_url_or_default) %>
+                    </figure>
+                      <p class="subtitle"><%= message.body %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+</div>
